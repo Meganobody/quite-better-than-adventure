@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "quitebetter",
+  "version": "${version}",
+
+  "name": "Quite Better than Adventure",
+  "description": "A mod that adds a bunch of stuff! Items, Blocks, other kinds of features!",
+  "authors": [
+			"Meganobody",
+		"(Doops, Tocinin)"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
+	"icon": "icon.png",
+  "license": "CC0-1.0",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+			"quitebetter.core.ModCore"
+    ],
+		"beforeGameStart": [
+			"quitebetter.core.ModCore"
+		],
+		"afterGameStart": [
+			"quitebetter.core.ModCore"
+		],
+		"recipesReady": [
+			"quitebetter.core.ModCore"
+		],
+		"initModels": [
+			"quitebetter.client.ModClient"
+		]
+	},
+  "mixins": [
+      "quitebetter.mixins.json"
+  ],
+
+  "depends": {
+
+    "fabricloader": ">=0.13.3"
+  },
+  "suggests": {
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "quitebetter.core.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "BiomeForestMixin",
+    "BlockLogicMixin",
+    "CreativeItemsMixin",
+    "EntityRenderDispatcherMixin",
+    "FishingBobberMixin",
+    "ItemBlockMixin",
+    "ItemBowMixin",
+    "ItemFishingRodMixin",
+    "ItemMixin",
+    "MinecraftMixin",
+    "PlayerMixin",
+    "RecipeRegisterMixin",
+    "TextureMagangerMixin",
+    "TileEntityBasketMixin",
+    "TileEntityDispatcherMixin",
+    "TileEntityRenderDispatcherMixin",
+    "glued.BlockLogicDoorMixin",
+    "glued.BlockLogicNoteMixin",
+    "glued.BlockLogicTrapdoorMixin"
+  ],
+  "client": [
+    "PlayerControllerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
