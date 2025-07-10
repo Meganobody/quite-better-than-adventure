@@ -33,6 +33,9 @@
 		],
 		"initModels": [
 			"quitebetter.client.ModClient"
+		],
+		"btwaila": [
+			"quitebetter.client.impl.btwaila.BTWailaQBAPlugin"
 		]
 	},
   "mixins": [
