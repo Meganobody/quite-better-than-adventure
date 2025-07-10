@@ -3,6 +3,7 @@
   "minVersion": "0.8",
   "package": "quitebetter.core.mixin",
   "compatibilityLevel": "JAVA_8",
+  "plugin": "quitebetter.core.mixin.config.MixinConfig",
   "mixins": [
     "BiomeForestMixin",
     "BlockLogicMixin",

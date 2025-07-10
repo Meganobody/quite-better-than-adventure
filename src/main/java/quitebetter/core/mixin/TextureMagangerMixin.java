@@ -54,9 +54,6 @@ public class TextureMagangerMixin {
 				IconCoordinate texture = TextureRegistry.getTexture(MOD_ID + ":block/fan/active_" + side);
 				this.addDynamicTexture(new DynamicTextureCustom(texture, (AnimationProperties) texture.getMeta("animation", AnimationProperties.class)));
 			}
-			//CONVEYOR
-			IconCoordinate texture = TextureRegistry.getTexture(MOD_ID + ":block/conveyor/active_top");
-			this.addDynamicTexture(new DynamicTextureCustom(texture, (AnimationProperties) texture.getMeta("animation", AnimationProperties.class)));
 		}
 	}
 }

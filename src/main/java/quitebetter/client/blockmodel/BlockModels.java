@@ -40,9 +40,6 @@ public class BlockModels {
 		d.addDispatch(new BlockModelFan<>(ModBlocks.ACTIVE_FAN,true,false));
 		d.addDispatch(new BlockModelFan<>(ModBlocks.IN_FAN,false,true));
 		d.addDispatch(new BlockModelFan<>(ModBlocks.ACTIVE_IN_FAN,true,true));
-		//CONVEYOR
-		d.addDispatch(new BlockModelConveyor<>(ModBlocks.CONVEYOR,false));
-		d.addDispatch(new BlockModelConveyor<>(ModBlocks.ACTIVE_CONVEYOR,true));
 		//SUPPORTS
 		d.addDispatch(new BlockModelSupports<>(ModBlocks.SUPPORT_STEEL).withTextures(PathTo("support","steel_top"),PathTo("support","steel")));
 		d.addDispatch(new BlockModelSupports<>(ModBlocks.SUPPORT_IRON).withTextures(PathTo("support","iron_top"),PathTo("support","iron")));

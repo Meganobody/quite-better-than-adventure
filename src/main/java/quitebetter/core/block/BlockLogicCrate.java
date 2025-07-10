@@ -74,7 +74,11 @@ public class BlockLogicCrate extends BlockLogic implements IPaintable, ILeftClic
 
 	@Override
 	public ItemStack @Nullable [] getBreakResult(World world, EnumDropCause dropCause, int meta, TileEntity tileEntity) {
-		ArrayList<ItemStack> result = ((TileEntityCrate)tileEntity).getBreakResult();
+		ArrayList<ItemStack> result = new ArrayList<>();
+		if (tileEntity!=null) {
+			result = ((TileEntityCrate)tileEntity).getBreakResult();
+			result.add(new ItemStack(this.block, 1, meta));
+		}
 		result.add(new ItemStack(this.block, 1, meta));
 		EntityItem.enableItemClumping = true;
 		return result.toArray(new ItemStack[]{});

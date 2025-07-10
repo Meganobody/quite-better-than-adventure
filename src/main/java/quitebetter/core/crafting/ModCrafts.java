@@ -1,5 +1,6 @@
 package quitebetter.core.crafting;
 
+import net.fabricmc.loader.impl.FabricLoaderImpl;
 import quitebetter.core.block.ModBlocks;
 import quitebetter.core.item.ModItems;
 import net.minecraft.core.block.Blocks;
@@ -21,17 +22,17 @@ public class ModCrafts {
 		//HAZARDS
 		list = new ArrayList();
 		list.add(ModBlocks.HAZARD.getDefaultStack());
-		for(DyeColor color : DyeColor.values()) {
+		for (DyeColor color : DyeColor.values()) {
 			list.add(new ItemStack(ModBlocks.HAZARD_PAINTED, 1, color.blockMeta));
 		}
-		Registries.ITEM_GROUPS.register(MOD_ID+":hazards", list);
+		Registries.ITEM_GROUPS.register(MOD_ID + ":hazards", list);
 		//CRATES
 		list = new ArrayList();
 		list.add(ModBlocks.CRATE.getDefaultStack());
-		for(DyeColor color : DyeColor.values()) {
+		for (DyeColor color : DyeColor.values()) {
 			list.add(new ItemStack(ModBlocks.CRATE_PAINTED, 1, color.blockMeta));
 		}
-		Registries.ITEM_GROUPS.register(MOD_ID+":crates", list);
+		Registries.ITEM_GROUPS.register(MOD_ID + ":crates", list);
 		//////WORKBENCH
 		//HOOK
 		RecipeBuilder.Shaped(MOD_ID,
@@ -41,11 +42,13 @@ public class ModCrafts {
 			.addInput('$', Items.ROPE)
 			.create("hook_craft", new ItemStack(ModItems.HOOK));
 		//STEEL FISHING ROD
-		RecipeBuilder.Shaped(MOD_ID,
-				"  #", " #@", "# @")
-			.addInput('#', Items.INGOT_STEEL)
-			.addInput('@', Items.ROPE)
-			.create("steel_fishing_rod_craft", new ItemStack(ModItems.TOOL_STEEL_FISHINGROD));
+		if (!FabricLoaderImpl.INSTANCE.isModLoaded("stardew")) {
+			RecipeBuilder.Shaped(MOD_ID,
+					"  #", " #@", "# @")
+				.addInput('#', Items.INGOT_STEEL)
+				.addInput('@', Items.ROPE)
+				.create("steel_fishing_rod_craft", new ItemStack(ModItems.TOOL_STEEL_FISHINGROD));
+		}
 		//ARROW TORCH
 		RecipeBuilder.Shaped(MOD_ID,
 				"@", "#", "$")

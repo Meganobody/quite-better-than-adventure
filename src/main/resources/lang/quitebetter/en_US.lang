@@ -1,163 +1,163 @@
 #ITEMS
 
-item.item.examplemod.climbinghook.name=Climbing Hook
-item.item.examplemod.climbinghook.desc=Tool for easier climbing in nature. Needs a sturdy surface!
-item.item.examplemod.wrench.name=Wrench
-item.item.examplemod.wrench.desc=Shiny tool for rotating.
+item.item.quitebetter.climbinghook.name=Climbing Hook
+item.item.quitebetter.climbinghook.desc=Tool for easier climbing in nature. Needs a sturdy surface!
+item.item.quitebetter.wrench.name=Wrench
+item.item.quitebetter.wrench.desc=Shiny tool for rotating.
 
-item.item.examplemod.meta_wrench.name=Meta Wrench
-item.item.examplemod.meta_wrench.desc=Magical tool for changing mythical "metadata value" of blocks.
-item.item.examplemod.meta_wrench.info=Value changed from * to
+item.item.quitebetter.meta_wrench.name=Meta Wrench
+item.item.quitebetter.meta_wrench.desc=Magical tool for changing mythical "metadata value" of blocks.
+item.item.quitebetter.meta_wrench.info=Value changed from * to
 
-item.item.examplemod.seashell.name=Seashell
-item.item.examplemod.seashell.desc=Beautiful gift of waters
+item.item.quitebetter.seashell.name=Seashell
+item.item.quitebetter.seashell.desc=Beautiful gift of waters
 
-item.item.examplemod.pedestal.name=Pedestal
-item.item.examplemod.pedestal.desc=A good way to highlight your achievements.
-tile.examplemod.pedestal.name=Pedestal
-tile.examplemod.pedestal.desc=A good way to highlight your achievements.
+item.item.quitebetter.pedestal.name=Pedestal
+item.item.quitebetter.pedestal.desc=A good way to highlight your achievements.
+tile.quitebetter.pedestal.name=Pedestal
+tile.quitebetter.pedestal.desc=A good way to highlight your achievements.
 
-item.item.examplemod.ammo.arrow.torch.name=Arrow Torch
-item.item.examplemod.ammo.arrow.torch.desc=A flaming projectile for firing from a bow.
+item.item.quitebetter.ammo.arrow.torch.name=Arrow Torch
+item.item.quitebetter.ammo.arrow.torch.desc=A flaming projectile for firing from a bow.
 
-item.examplemod.tool.steel.fishingrod.name=Steel Fishing Rod
-item.examplemod.tool.steel.fishingrod.desc=Cast a line and catch the big one like a professional! Fireproof.
+item.quitebetter.tool.steel.fishingrod.name=Steel Fishing Rod
+item.quitebetter.tool.steel.fishingrod.desc=Cast a line and catch the big one like a professional! Fireproof.
 
-item.item.examplemod.sack.name=Sack
-item.item.examplemod.sack.desc.empty=A portable storage.
-item.item.examplemod.sack.desc.filled=A portable storage with..
-item.item.examplemod.sack.desc.mystery=A mystical portable storage. What could be inside?
+item.item.quitebetter.sack.name=Sack
+item.item.quitebetter.sack.desc.empty=A portable storage.
+item.item.quitebetter.sack.desc.filled=A portable storage with..
+item.item.quitebetter.sack.desc.mystery=A mystical portable storage. What could be inside?
 
 #BLOCKS
 
-tile.examplemod.block.bone.name=Block Of Bones
-tile.examplemod.block.bone.desc=A solid block of bones. Questionable..
+tile.quitebetter.block.bone.name=Block Of Bones
+tile.quitebetter.block.bone.desc=A solid block of bones. Questionable..
 
 
-tile.examplemod.obsidian.polished.name=Polished Obsidian
-tile.examplemod.obsidian.polished.desc=A polished block of obsidian. Impressive.
+tile.quitebetter.obsidian.polished.name=Polished Obsidian
+tile.quitebetter.obsidian.polished.desc=A polished block of obsidian. Impressive.
 
 
-tile.examplemod.tile.seashell.name=Seashell Tiles
-tile.examplemod.tile.seashell.desc=A stacked block of seashells.
-tile.examplemod.stairs.tile.seashell.name=Seashell Tiles Stairs
-tile.examplemod.stairs.tile.seashell.desc=Seashell tiles used for rapid vertical movement.
-tile.examplemod.slab.tile.seashell.name=Seashell Tiles Slab
-tile.examplemod.slab.tile.seashell.desc=A slab of seashell tiles.
+tile.quitebetter.tile.seashell.name=Seashell Tiles
+tile.quitebetter.tile.seashell.desc=A stacked block of seashells.
+tile.quitebetter.stairs.tile.seashell.name=Seashell Tiles Stairs
+tile.quitebetter.stairs.tile.seashell.desc=Seashell tiles used for rapid vertical movement.
+tile.quitebetter.slab.tile.seashell.name=Seashell Tiles Slab
+tile.quitebetter.slab.tile.seashell.desc=A slab of seashell tiles.
 
-tile.examplemod.brick.olivine.name=Olivine Bricks
-tile.examplemod.brick.olivine.desc=Stacked bricks of olivine.
-tile.examplemod.stairs.brick.olivine.name=Olivine Bricks Stairs
-tile.examplemod.stairs.brick.olivine.desc=Bricks of olivine used for rapid vertical movement.
-tile.examplemod.slab.brick.olivine.name=Olivine Bricks Slab
-tile.examplemod.slab.brick.olivine.desc=A slab of olivine bricks.
+tile.quitebetter.brick.olivine.name=Olivine Bricks
+tile.quitebetter.brick.olivine.desc=Stacked bricks of olivine.
+tile.quitebetter.stairs.brick.olivine.name=Olivine Bricks Stairs
+tile.quitebetter.stairs.brick.olivine.desc=Bricks of olivine used for rapid vertical movement.
+tile.quitebetter.slab.brick.olivine.name=Olivine Bricks Slab
+tile.quitebetter.slab.brick.olivine.desc=A slab of olivine bricks.
 
-tile.examplemod.mushroom.glowing.name=Glowing mushroom
-tile.examplemod.mushroom.glowing.desc=A strange green mushroom. Emits light.
+tile.quitebetter.mushroom.glowing.name=Glowing mushroom
+tile.quitebetter.mushroom.glowing.desc=A strange green mushroom. Emits light.
 
-tile.examplemod.fan.name=Fan
-tile.examplemod.fan.desc=Blows away everything.
-tile.examplemod.active.fan.name=Fan
-tile.examplemod.active.fan.desc=Blows away everything.
-
-
-tile.examplemod.conveyor.name=Conveyor
-tile.examplemod.conveyor.desc=Great for moving items.
-tile.examplemod.active.conveyor.name=Conveyor
-tile.examplemod.active.conveyor.desc=Great for moving items.
-
-tile.examplemod.support.steel.name=Steel Supports
-tile.examplemod.support.steel.desc=A metal construction made out of steel.
-
-tile.examplemod.support.iron.name=Iron Supports
-tile.examplemod.support.iron.desc=A metal construction made out of iron.
-
-tile.examplemod.geode.name=Geode
-tile.examplemod.geode.desc=A rock that contains minerals inside.
-
-tile.examplemod.brick.snow.name=Snow Bricks
-tile.examplemod.brick.snow.desc=Bricks made out of Snow.
-tile.examplemod.stairs.brick.snow.name=Snow Bricks Stairs
-tile.examplemod.stairs.brick.snow.desc=Snow Bricks used for rapid vertical movement.
-tile.examplemod.slab.brick.snow.name=Snow Bricks Slab
-tile.examplemod.slab.brick.snow.desc=A slab of snow bricks.
-
-tile.examplemod.crate.name=Wooden Crate
-tile.examplemod.crate.desc=An useful storage for large quantities of items.
-tile.examplemod.painted.name=Mystery Wooden Crate
-tile.examplemod.painted.desc=An useful storage for large quantities of items. How did you get this!?
-
-tile.examplemod.crate.painted.black.name=Black Wooden Crate
-tile.examplemod.crate.painted.black.desc=An useful storage for large quantities of items.
-tile.examplemod.crate.painted.red.name=Red Wooden Crate
-tile.examplemod.crate.painted.red.desc=An useful storage for large quantities of items.
-tile.examplemod.crate.painted.green.name=Green Wooden Crate
-tile.examplemod.crate.painted.green.desc=An useful storage for large quantities of items.
-tile.examplemod.crate.painted.brown.name=Brown Wooden Crate
-tile.examplemod.crate.painted.brown.desc=An useful storage for large quantities of items.
-tile.examplemod.crate.painted.blue.name=Blue Wooden Crate
-tile.examplemod.crate.painted.blue.desc=An useful storage for large quantities of items.
-tile.examplemod.crate.painted.purple.name=Purple Wooden Crate
-tile.examplemod.crate.painted.purple.desc=An useful storage for large quantities of items.
-tile.examplemod.crate.painted.cyan.name=Cyan Wooden Crate
-tile.examplemod.crate.painted.cyan.desc=An useful storage for large quantities of items.
-tile.examplemod.crate.painted.silver.name=Silver Wooden Crate
-tile.examplemod.crate.painted.silver.desc=An useful storage for large quantities of items.
-tile.examplemod.crate.painted.gray.name=Gray Wooden Crate
-tile.examplemod.crate.painted.gray.desc=An useful storage for large quantities of items.
-tile.examplemod.crate.painted.pink.name=Pink Wooden Crate
-tile.examplemod.crate.painted.pink.desc=An useful storage for large quantities of items.
-tile.examplemod.crate.painted.lime.name=Lime Wooden Crate
-tile.examplemod.crate.painted.lime.desc=An useful storage for large quantities of items.
-tile.examplemod.crate.painted.yellow.name=Yellow Wooden Crate
-tile.examplemod.crate.painted.yellow.desc=An useful storage for large quantities of items.
-tile.examplemod.crate.painted.lightblue.name=Light Blue Wooden Crate
-tile.examplemod.crate.painted.lightblue.desc=An useful storage for large quantities of items.
-tile.examplemod.crate.painted.magenta.name=Magenta Wooden Crate
-tile.examplemod.crate.painted.magenta.desc=An useful storage for large quantities of items.
-tile.examplemod.crate.painted.orange.name=Orange Wooden Crate
-tile.examplemod.crate.painted.orange.desc=An useful storage for large quantities of items.
-tile.examplemod.crate.painted.white.name=White Wooden Crate
-tile.examplemod.crate.painted.white.desc=An useful storage for large quantities of items.
+tile.quitebetter.fan.name=Fan
+tile.quitebetter.fan.desc=Blows away everything.
+tile.quitebetter.active.fan.name=Fan
+tile.quitebetter.active.fan.desc=Blows away everything.
 
 
-tile.examplemod.hazard.name=Hazard Block
-tile.examplemod.hazard.desc=Not a danger, but a prevention.
-tile.examplemod.hazard.painted.name=Mystery Hazard Block
-tile.examplemod.hazard.painted.desc=Not a danger, but how did you get this?!
+tile.quitebetter.conveyor.name=Conveyor
+tile.quitebetter.conveyor.desc=Great for moving items.
+tile.quitebetter.active.conveyor.name=Conveyor
+tile.quitebetter.active.conveyor.desc=Great for moving items.
 
-tile.examplemod.hazard.painted.black.name=Black Hazard Block
-tile.examplemod.hazard.painted.black.desc=Not a danger, but a prevention in black.
-tile.examplemod.hazard.painted.red.name=Red Hazard Block
-tile.examplemod.hazard.painted.red.desc=Not a danger, but a prevention in red.
-tile.examplemod.hazard.painted.green.name=Green Hazard Block
-tile.examplemod.hazard.painted.green.desc=Not a danger, but a prevention in green.
-tile.examplemod.hazard.painted.brown.name=Brown Hazard Block
-tile.examplemod.hazard.painted.brown.desc=Not a danger, but a prevention in brown.
-tile.examplemod.hazard.painted.blue.name=Blue Hazard Block
-tile.examplemod.hazard.painted.blue.desc=Not a danger, but a prevention in blue.
-tile.examplemod.hazard.painted.purple.name=Purple Hazard Block
-tile.examplemod.hazard.painted.purple.desc=Not a danger, but a prevention in purple.
-tile.examplemod.hazard.painted.cyan.name=Cyan Hazard Block
-tile.examplemod.hazard.painted.cyan.desc=Not a danger, but a prevention in cyan.
-tile.examplemod.hazard.painted.silver.name=Silver Hazard Block
-tile.examplemod.hazard.painted.silver.desc=Not a danger, but a prevention in silver.
-tile.examplemod.hazard.painted.gray.name=Gray Hazard Block
-tile.examplemod.hazard.painted.gray.desc=Not a danger, but a prevention in gray.
-tile.examplemod.hazard.painted.pink.name=Pink Hazard Block
-tile.examplemod.hazard.painted.pink.desc=Not a danger, but a prevention in pink.
-tile.examplemod.hazard.painted.lime.name=Lime Hazard Block
-tile.examplemod.hazard.painted.lime.desc=Not a danger, but a prevention in lime.
-tile.examplemod.hazard.painted.yellow.name=Yellow Hazard Block
-tile.examplemod.hazard.painted.yellow.desc=Not a danger, but a prevention in yellow.
-tile.examplemod.hazard.painted.lightblue.name=Light Blue Hazard Block
-tile.examplemod.hazard.painted.lightblue.desc=Not a danger, but a prevention in light blue.
-tile.examplemod.hazard.painted.magenta.name=Magenta Hazard Block
-tile.examplemod.hazard.painted.magenta.desc=Not a danger, but a prevention in magenta.
-tile.examplemod.hazard.painted.orange.name=Orange Hazard Block
-tile.examplemod.hazard.painted.orange.desc=Not a danger, but a prevention in orange.
-tile.examplemod.hazard.painted.white.name=White Hazard Block
-tile.examplemod.hazard.painted.white.desc=Not a danger, but a prevention in white.
+tile.quitebetter.support.steel.name=Steel Supports
+tile.quitebetter.support.steel.desc=A metal construction made out of steel.
+
+tile.quitebetter.support.iron.name=Iron Supports
+tile.quitebetter.support.iron.desc=A metal construction made out of iron.
+
+tile.quitebetter.geode.name=Geode
+tile.quitebetter.geode.desc=A rock that contains minerals inside.
+
+tile.quitebetter.brick.snow.name=Snow Bricks
+tile.quitebetter.brick.snow.desc=Bricks made out of Snow.
+tile.quitebetter.stairs.brick.snow.name=Snow Bricks Stairs
+tile.quitebetter.stairs.brick.snow.desc=Snow Bricks used for rapid vertical movement.
+tile.quitebetter.slab.brick.snow.name=Snow Bricks Slab
+tile.quitebetter.slab.brick.snow.desc=A slab of snow bricks.
+
+tile.quitebetter.crate.name=Wooden Crate
+tile.quitebetter.crate.desc=An useful storage for large quantities of items.
+tile.quitebetter.painted.name=Mystery Wooden Crate
+tile.quitebetter.painted.desc=An useful storage for large quantities of items. How did you get this!?
+
+tile.quitebetter.crate.painted.black.name=Black Wooden Crate
+tile.quitebetter.crate.painted.black.desc=An useful storage for large quantities of items.
+tile.quitebetter.crate.painted.red.name=Red Wooden Crate
+tile.quitebetter.crate.painted.red.desc=An useful storage for large quantities of items.
+tile.quitebetter.crate.painted.green.name=Green Wooden Crate
+tile.quitebetter.crate.painted.green.desc=An useful storage for large quantities of items.
+tile.quitebetter.crate.painted.brown.name=Brown Wooden Crate
+tile.quitebetter.crate.painted.brown.desc=An useful storage for large quantities of items.
+tile.quitebetter.crate.painted.blue.name=Blue Wooden Crate
+tile.quitebetter.crate.painted.blue.desc=An useful storage for large quantities of items.
+tile.quitebetter.crate.painted.purple.name=Purple Wooden Crate
+tile.quitebetter.crate.painted.purple.desc=An useful storage for large quantities of items.
+tile.quitebetter.crate.painted.cyan.name=Cyan Wooden Crate
+tile.quitebetter.crate.painted.cyan.desc=An useful storage for large quantities of items.
+tile.quitebetter.crate.painted.silver.name=Silver Wooden Crate
+tile.quitebetter.crate.painted.silver.desc=An useful storage for large quantities of items.
+tile.quitebetter.crate.painted.gray.name=Gray Wooden Crate
+tile.quitebetter.crate.painted.gray.desc=An useful storage for large quantities of items.
+tile.quitebetter.crate.painted.pink.name=Pink Wooden Crate
+tile.quitebetter.crate.painted.pink.desc=An useful storage for large quantities of items.
+tile.quitebetter.crate.painted.lime.name=Lime Wooden Crate
+tile.quitebetter.crate.painted.lime.desc=An useful storage for large quantities of items.
+tile.quitebetter.crate.painted.yellow.name=Yellow Wooden Crate
+tile.quitebetter.crate.painted.yellow.desc=An useful storage for large quantities of items.
+tile.quitebetter.crate.painted.lightblue.name=Light Blue Wooden Crate
+tile.quitebetter.crate.painted.lightblue.desc=An useful storage for large quantities of items.
+tile.quitebetter.crate.painted.magenta.name=Magenta Wooden Crate
+tile.quitebetter.crate.painted.magenta.desc=An useful storage for large quantities of items.
+tile.quitebetter.crate.painted.orange.name=Orange Wooden Crate
+tile.quitebetter.crate.painted.orange.desc=An useful storage for large quantities of items.
+tile.quitebetter.crate.painted.white.name=White Wooden Crate
+tile.quitebetter.crate.painted.white.desc=An useful storage for large quantities of items.
+
+
+tile.quitebetter.hazard.name=Hazard Block
+tile.quitebetter.hazard.desc=Not a danger, but a prevention.
+tile.quitebetter.hazard.painted.name=Mystery Hazard Block
+tile.quitebetter.hazard.painted.desc=Not a danger, but how did you get this?!
+
+tile.quitebetter.hazard.painted.black.name=Black Hazard Block
+tile.quitebetter.hazard.painted.black.desc=Not a danger, but a prevention in black.
+tile.quitebetter.hazard.painted.red.name=Red Hazard Block
+tile.quitebetter.hazard.painted.red.desc=Not a danger, but a prevention in red.
+tile.quitebetter.hazard.painted.green.name=Green Hazard Block
+tile.quitebetter.hazard.painted.green.desc=Not a danger, but a prevention in green.
+tile.quitebetter.hazard.painted.brown.name=Brown Hazard Block
+tile.quitebetter.hazard.painted.brown.desc=Not a danger, but a prevention in brown.
+tile.quitebetter.hazard.painted.blue.name=Blue Hazard Block
+tile.quitebetter.hazard.painted.blue.desc=Not a danger, but a prevention in blue.
+tile.quitebetter.hazard.painted.purple.name=Purple Hazard Block
+tile.quitebetter.hazard.painted.purple.desc=Not a danger, but a prevention in purple.
+tile.quitebetter.hazard.painted.cyan.name=Cyan Hazard Block
+tile.quitebetter.hazard.painted.cyan.desc=Not a danger, but a prevention in cyan.
+tile.quitebetter.hazard.painted.silver.name=Silver Hazard Block
+tile.quitebetter.hazard.painted.silver.desc=Not a danger, but a prevention in silver.
+tile.quitebetter.hazard.painted.gray.name=Gray Hazard Block
+tile.quitebetter.hazard.painted.gray.desc=Not a danger, but a prevention in gray.
+tile.quitebetter.hazard.painted.pink.name=Pink Hazard Block
+tile.quitebetter.hazard.painted.pink.desc=Not a danger, but a prevention in pink.
+tile.quitebetter.hazard.painted.lime.name=Lime Hazard Block
+tile.quitebetter.hazard.painted.lime.desc=Not a danger, but a prevention in lime.
+tile.quitebetter.hazard.painted.yellow.name=Yellow Hazard Block
+tile.quitebetter.hazard.painted.yellow.desc=Not a danger, but a prevention in yellow.
+tile.quitebetter.hazard.painted.lightblue.name=Light Blue Hazard Block
+tile.quitebetter.hazard.painted.lightblue.desc=Not a danger, but a prevention in light blue.
+tile.quitebetter.hazard.painted.magenta.name=Magenta Hazard Block
+tile.quitebetter.hazard.painted.magenta.desc=Not a danger, but a prevention in magenta.
+tile.quitebetter.hazard.painted.orange.name=Orange Hazard Block
+tile.quitebetter.hazard.painted.orange.desc=Not a danger, but a prevention in orange.
+tile.quitebetter.hazard.painted.white.name=White Hazard Block
+tile.quitebetter.hazard.painted.white.desc=Not a danger, but a prevention in white.
 
 # ACHIEVEMENTS
 

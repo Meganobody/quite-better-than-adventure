@@ -1,5 +1,6 @@
 package quitebetter.core.achivement;
 
+import net.fabricmc.loader.impl.FabricLoaderImpl;
 import quitebetter.core.item.ModItems;
 import net.minecraft.client.gui.achievements.data.AchievementPages;
 import net.minecraft.core.achievement.Achievement;
@@ -16,6 +17,8 @@ public class ModAchievements {
 
 		LAVA_FISHING = (new Achievement(NamespaceID.getPermanent(MOD_ID, "lava_fishing"), "lavaFishing", ModItems.TOOL_STEEL_FISHINGROD, Achievements.ENTER_NETHER)).setType(Achievement.TYPE_NORMAL).registerAchievement();
 
-		AchievementPages.netherPage.addAchievement(LAVA_FISHING,-1,0);
+		if (!FabricLoaderImpl.INSTANCE.isModLoaded("stardew")) {
+			AchievementPages.netherPage.addAchievement(LAVA_FISHING,-1,0);
+		}
 	}
 }

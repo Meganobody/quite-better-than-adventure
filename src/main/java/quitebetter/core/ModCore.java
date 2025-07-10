@@ -20,6 +20,7 @@ public class ModCore implements ModInitializer, GameStartEntrypoint, RecipeEntry
 
 	@Override
 	public void beforeGameStart() {
+		ModConfig.Setup();
 		ModBlocks.Setup();
 		ModItems.Setup();
 	}
