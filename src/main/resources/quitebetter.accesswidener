@@ -2,3 +2,6 @@ accessWidener v2 named
 accessible class net/minecraft/core/block/entity/TileEntityBasket$BasketEntry
 accessible field net/minecraft/core/block/entity/TileEntityBasket contents Ljava/util/Map;
 accessible field net/minecraft/core/block/entity/TileEntityBasket numUnitsInside I
+accessible field net/minecraft/core/world/data/SynchedEntityData itemsById Ljava/util/Map;
+accessible field net/minecraft/client/player/controller/PlayerController mc Lnet/minecraft/client/Minecraft;
+accessible field net/minecraft/client/render/tileentity/TileEntityRenderer renderDispatcher Lnet/minecraft/client/render/TileEntityRenderDispatcher;

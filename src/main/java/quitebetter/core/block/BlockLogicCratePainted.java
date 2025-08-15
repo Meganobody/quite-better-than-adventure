@@ -8,6 +8,7 @@ import net.minecraft.core.util.helper.DyeColor;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import org.jetbrains.annotations.Nullable;
+import quitebetter.core.tileentity.TileEntityCrate;
 
 public class BlockLogicCratePainted extends BlockLogicCrate implements IPainted {
 	public BlockLogicCratePainted(Block<?> block, Material material) {
@@ -37,5 +38,10 @@ public class BlockLogicCratePainted extends BlockLogicCrate implements IPainted 
 	@Override
 	public void setColor(World world, int x, int y, int z, DyeColor color) {
 		world.setBlockMetadataWithNotify(x,y,z,toMetadata(color));
+		world.notifyBlockChange(x,y,z,block.id());
+		TileEntityCrate tile = (TileEntityCrate) world.getTileEntity(x,y,z);
+		if (tile!=null) {
+			tile.updateStorageHeights();
+		}
 	}
 }

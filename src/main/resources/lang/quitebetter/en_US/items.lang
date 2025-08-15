@@ -1,0 +1,38 @@
+# CLIMBING HOOK
+item.quitebetter.climbinghook.name=Climbing Hook
+item.quitebetter.climbinghook.desc=Tool for easier climbing in nature. Needs a sturdy surface!
+
+# WRENCH
+item.quitebetter.wrench.name=Wrench
+item.quitebetter.wrench.desc=Shiny tool for rotating.
+
+# META WRENCH
+item.quitebetter.meta.wrench.name=Meta Wrench
+item.quitebetter.meta.wrench.desc=Magical tool for wizardry with a "meta" value.
+item.quitebetter.meta.wrench.info=Meta of the block is changed from * to
+
+# SEASHELL
+item.quitebetter.seashell.name=Seashell
+item.quitebetter.seashell.desc=Beautiful gift of waters
+
+# PEDESTAL
+item.quitebetter.pedestal.name=Pedestal
+item.quitebetter.pedestal.desc=A good way to highlight your achievements.
+
+# ARROW TORCH
+item.quitebetter.ammo.arrow.torch.name=Arrow Torch
+item.quitebetter.ammo.arrow.torch.desc=A flaming projectile for firing from a bow.
+
+# STEEL FISHING ROD
+item.quitebetter.tool.steel.fishingrod.name=Steel Fishing Rod
+item.quitebetter.tool.steel.fishingrod.desc=Cast a line and catch the big one like a professional! Fireproof.
+
+# SACK
+item.quitebetter.sack.name=Sack
+item.quitebetter.sack.desc.empty=A portable storage.
+item.quitebetter.sack.desc.filled=A portable storage with..
+item.quitebetter.sack.desc.mystery=A mystical portable storage. What could be inside?
+
+# LEATHER GLOVE
+item.quitebetter.glove.leather.name=Leather Glove
+item.quitebetter.glove.leather.desc=Helps to reach further.

@@ -2,6 +2,7 @@ package quitebetter.core.block;
 
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicFlower;
+import net.minecraft.core.block.BlockLogicMushroom;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.ItemStack;
@@ -11,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-public class BlockLogicGlowingMushroom extends BlockLogicFlower {
+public class BlockLogicGlowingMushroom extends BlockLogicMushroom {
 	public BlockLogicGlowingMushroom(Block<?> block) {
 		super(block);
 		float f = 0.2F;
@@ -33,7 +34,12 @@ public class BlockLogicGlowingMushroom extends BlockLogicFlower {
 				}
 			}
 		}
-
+		if (world.getBlock(x,y-1,z)!=null && world.getBlock(x,y-1,z).equals(Blocks.COBBLE_STONE_MOSSY)) {
+			if (rand.nextInt(2)==0) {
+				BlockLogicMushroom that = (BlockLogicMushroom)(Object)this;
+				that.updateTick(world, x, y, z, rand);
+			}
+		}
 	}
 
 	protected boolean mayPlaceOn(int blockId) {

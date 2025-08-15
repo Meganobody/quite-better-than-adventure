@@ -1,5 +1,16 @@
 package quitebetter.core.block;
 
+import net.minecraft.core.block.Blocks;
+import net.minecraft.core.block.entity.TileEntityActivator;
+import net.minecraft.core.block.entity.TileEntityMeshGold;
+import net.minecraft.core.block.tag.BlockTags;
+import net.minecraft.core.entity.Entity;
+import net.minecraft.core.item.Items;
+import net.minecraft.core.net.packet.PacketBlockUpdate;
+import net.minecraft.core.net.packet.PacketTileEntityData;
+import net.minecraft.core.sound.SoundCategory;
+import net.minecraft.core.util.helper.Direction;
+import org.jetbrains.annotations.NotNull;
 import quitebetter.core.tileentity.TileEntityCrate;
 import quitebetter.core.util.ILeftClickable;
 import quitebetter.core.util.IRightClickable;
@@ -17,10 +28,13 @@ import net.minecraft.core.util.helper.DyeColor;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import org.jetbrains.annotations.Nullable;
+import quitebetter.core.util.ServerUtil;
+import turniplabs.halplibe.helper.EnvironmentHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+import static quitebetter.core.ModCore.LOGGER;
 
 public class BlockLogicCrate extends BlockLogic implements IPaintable, ILeftClickable, IRightClickable {
 	public BlockLogicCrate(Block<?> block, Material material) {
@@ -33,10 +47,31 @@ public class BlockLogicCrate extends BlockLogic implements IPaintable, ILeftClic
 		return block != null && Arrays.asList(fans).contains(block);
 	}
 
+	//ACTIVATOR
+
+	public void onActivatorInteract(World world, int x, int y, int z, TileEntityActivator activator, Direction direction) {
+		TileEntityCrate tile = (TileEntityCrate) world.getTileEntity(x,y,z);
+		Block front = world.getBlock(x+direction.getOffsetX(),y+direction.getOffsetY(),z+direction.getOffsetZ());
+		TileEntity frontTile = world.getTileEntity(x+direction.getOffsetX(),y+direction.getOffsetY(),z+direction.getOffsetZ());
+		if (tile!=null) {
+			ItemStack activeStack = activator.getItem(activator.stackSelector);
+			if (tile.hasItemData()) {
+				if (TileEntityCrate.canUseToTake(activeStack) && (front==null || front.hasTag(BlockTags.PLACE_OVERWRITES) || front.equals(Blocks.MESH))) {
+					ItemStack stack = tile.takeStack();
+					if (stack!=null) {
+						world.entityJoinedWorld(new EntityItem(world, x+direction.getOffsetX(),y+direction.getOffsetY(),z+direction.getOffsetZ(), stack));
+					}
+				}
+			}
+		}
+	}
+
+	//BREAKING
+
 	@Override
 	public boolean preventsBreaking(World world, int x, int y, int z, Player player, Side side) {
 		TileEntityCrate tile = (TileEntityCrate) world.getTileEntity(x,y,z);
-		return tile!=null && tile.ItemId!=null && !player.isSneaking();
+		return tile!=null && !tile.glued && tile.itemID !=null && !player.isSneaking();
 	}
 
 	@Override
@@ -52,32 +87,36 @@ public class BlockLogicCrate extends BlockLogic implements IPaintable, ILeftClic
 		}
 	}
 
+	//INTERACTION
+
 	@Override
 	public boolean preventsInteraction(World world, int x, int y, int z, Player player, Side side) {
 		TileEntityCrate tile = (TileEntityCrate) world.getTileEntity(x,y,z);
-		return tile!=null && (tile.ItemId!=null || !player.isSneaking()) && (player.getHeldItem()==null || TileEntityCrate.canUseToTake(player.getHeldItem()));
+		return tile!=null && !tile.glued && (tile.itemID !=null || player.getHeldItem()!=null && player.getHeldItem().getItem().equals(Items.SLIMEBALL) || !player.isSneaking()) && (player.getHeldItem()!=null && TileEntityCrate.canUseToTake(player.getHeldItem()));
 	}
 
 	@Override
 	public void onBlockRightClicked(World world, int x, int y, int z, Player player, Side side) {
 		Random rand = new Random();
-		TileEntityCrate tile = (TileEntityCrate) world.getTileEntity(x,y,z);
-		if (tile!=null) {
-			tile.pushItems(player);
-		} else {
-			for(int j = 0; j < 4; ++j) {
-				world.spawnParticle("smoke", x+rand.nextFloat(), y+rand.nextFloat(), z+rand.nextFloat(), (double)(rand.nextInt(11)-5)/30, (double)(rand.nextInt(11)-5)/30, (double)(rand.nextInt(11)-5)/30, 0);
+		TileEntityCrate tile = (TileEntityCrate) world.getTileEntity(x, y, z);
+		if (tile != null) {
+			if (EnvironmentHelper.isSinglePlayer() || EnvironmentHelper.isServerEnvironment()) {
+				tile.pushItems(player);
+			} else {
+				if (!tile.glued) {
+					player.swingItem();
+				}
 			}
 		}
-		player.swingItem();
 	}
+
+	//WORLD
 
 	@Override
 	public ItemStack @Nullable [] getBreakResult(World world, EnumDropCause dropCause, int meta, TileEntity tileEntity) {
 		ArrayList<ItemStack> result = new ArrayList<>();
 		if (tileEntity!=null) {
 			result = ((TileEntityCrate)tileEntity).getBreakResult();
-			result.add(new ItemStack(this.block, 1, meta));
 		}
 		result.add(new ItemStack(this.block, 1, meta));
 		EntityItem.enableItemClumping = true;
@@ -88,13 +127,17 @@ public class BlockLogicCrate extends BlockLogic implements IPaintable, ILeftClic
 	public void onNeighborBlockChange(World world, int x, int y, int z, int blockId) {
 		TileEntityCrate tile = (TileEntityCrate) world.getTileEntity(x,y,z);
 		if (tile!=null) {
+			tile.updateStorageHeights();
 			tile.takeOutOfBasket();
 		}
 	}
+
+	//COLOR
 
 	@Override
 	public void setColor(World world, int x, int y, int z, DyeColor color) {
 		world.setBlockRaw(x, y, z, ModBlocks.CRATE_PAINTED.id());
 		((BlockLogicCratePainted)ModBlocks.CRATE_PAINTED.getLogic()).setColor(world, x, y, z, color);
+		world.notifyBlockChange(x,y,z,block.id());
 	}
 }

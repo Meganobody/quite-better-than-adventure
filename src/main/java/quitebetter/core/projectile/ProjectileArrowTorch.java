@@ -1,5 +1,13 @@
 package quitebetter.core.projectile;
 
+import net.minecraft.client.gui.modelviewer.categories.entries.entity.EntityEntryCreeper;
+import net.minecraft.core.block.BlockLogicTNT;
+import net.minecraft.core.block.Blocks;
+import net.minecraft.core.entity.EntityPrimedTNT;
+import net.minecraft.core.entity.monster.MobCreeper;
+import net.minecraft.core.entity.projectile.ProjectileArrowPurple;
+import net.minecraft.core.util.phys.AABB;
+import net.minecraft.core.util.phys.Vec3;
 import quitebetter.core.block.ModBlocks;
 import quitebetter.core.item.ModItems;
 import net.minecraft.core.block.tag.BlockTags;
@@ -11,6 +19,9 @@ import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
 import net.minecraft.core.util.phys.HitResult;
 import net.minecraft.core.world.World;
+import quitebetter.core.util.BaseUtil;
+
+import static quitebetter.core.ModCore.LOGGER;
 
 public class ProjectileArrowTorch extends ProjectileArrow {
 
@@ -49,7 +60,7 @@ public class ProjectileArrowTorch extends ProjectileArrow {
 	@Override
 	public void tick() {
 		super.tick();
-		if (this.tickCount > 1 && this.tickCount % 2 == 0) {
+		if (this.tickCount > 1 && this.tickCount % 3 == 0) {
 			world.spawnParticle("flame", this.x, this.y, this.z, 0, 0, 0, 0);
 		}
 	}
@@ -60,21 +71,39 @@ public class ProjectileArrowTorch extends ProjectileArrow {
 		if (hitResult.entity != null) {
 			hitResult.entity.remainingFireTicks = 25;
 			world.playSoundAtEntity((Entity)null, this, "fire.ignite", 1F, 1.0F + (random.nextFloat() - random.nextFloat()) * 0.4F);
+			if (hitResult.entity instanceof EntityPrimedTNT) {
+				((EntityPrimedTNT) hitResult.entity).fuse = 0;
+			}
 		}
 	}
 
-	@Override
-	public void setGrounded(boolean flag) {
-		this.inGround = flag;
+	protected void inGroundAction() {
 		this.remove();
 		boolean spawned = false;
 		int x;
 		int y;
 		int z;
 		//CENTERED
-		x = (int) (this.x);
-		y = (int) (this.y);
-		z = (int) (this.z);
+		x = this.xTile;
+		y = this.yTile;
+		z = this.zTile;
+		//TNT BLOCK
+		if (world.getBlock(x,y,z)!=null && world.getBlock(x,y,z).equals(Blocks.TNT)) {
+			((BlockLogicTNT) world.getBlock(x,y,z).getLogic()).ignite(world,x,y,z,true);
+			return;
+		}
+		if (this.yTile<(int) this.y) {
+			y=(int)this.y;
+		} else if (this.xTile<(int) this.x) {
+			x=(int)this.x;
+		} else if (this.xTile>(int) this.x) {
+			x=(int)this.x;
+		} else if (this.zTile<(int) this.z) {
+			z=this.zTile+1;
+		} else if (this.zTile>=(int) this.z) {
+			z=this.zTile-1;
+		}
+
 		if (world.getBlock(x, y, z) == null || (world.getBlock(x, y, z).hasTag(BlockTags.PLACE_OVERWRITES) && !(world.getBlock(x, y, z).hasTag(BlockTags.IS_LAVA)) && !(world.getBlock(x, y, z).hasTag(BlockTags.IS_WATER)) )) {
 			if (ModBlocks.ARROW_TORCH.canPlaceBlockAt(world,x,y,z)) {
 				world.setBlock(x, y, z, ModBlocks.ARROW_TORCH.id());
@@ -85,7 +114,6 @@ public class ProjectileArrowTorch extends ProjectileArrow {
 				spawned = true;
 			}
 		}
-		//ALL AROUND
 		if (!spawned) {
 			out:
 			for (int xi=-1; xi < 1; xi++) {
@@ -109,6 +137,7 @@ public class ProjectileArrowTorch extends ProjectileArrow {
 				}
 			}
 		}
+
 		if (!spawned) {
 			world.entityJoinedWorld(
 				new EntityItem(world, this.x, this.y, this.z, new ItemStack(ModItems.AMMO_ARROW_TORCH))

@@ -1,5 +1,6 @@
 package quitebetter.client.blockmodel;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.render.block.model.BlockModelStandard;
 import net.minecraft.client.render.tessellator.Tessellator;
 import net.minecraft.client.render.texture.stitcher.IconCoordinate;
@@ -32,6 +33,7 @@ public class BlockModelPedestal<T extends BlockLogic> extends BlockModelStandard
 	public boolean shouldItemRender3d() { return false; }
 
 	public boolean render(Tessellator tessellator, int x, int y, int z) {
+		boolean fullbright = Minecraft.getMinecraft().isFullbrightEnabled();
 		WorldSource world = this.renderBlocks.blockAccess;
 		float l;
 		l = world.getLightBrightness(x,y,z); tessellator.setColorRGBA((int) ((255*l)*0.5),(int) ((255*l)*0.5),(int) ((255*l)*0.5),255);
@@ -44,28 +46,34 @@ public class BlockModelPedestal<T extends BlockLogic> extends BlockModelStandard
 		double maxV = this.sideTexture.getIconVMax();
 		double w = 0.1;
 		//WEST
-		l = (world.getLightBrightness(x-1,y-1,z)+world.getLightBrightness(x-1,y,z))/2; tessellator.setColorRGBA((int) ((255*l)*l*0.6),(int) ((255*l)*0.6),(int) ((255*l)*0.6),255);
+		l = (world.getLightBrightness(x-1,y-1,z)+world.getLightBrightness(x-1,y,z))/2;
+		if (!fullbright) { tessellator.setColorRGBA((int) ((255*l)*l*0.6),(int) ((255*l)*0.6),(int) ((255*l)*0.6),255); }
+
 		tessellator.addVertexWithUV(x, y+0.1, z, minU, minV);
 		tessellator.addVertexWithUV(x-w, y-1+0.1, z, minU, maxV);
 		tessellator.addVertexWithUV(x-w, y-1+0.1, z+1, maxU, maxV);
 		tessellator.addVertexWithUV(x, y+0.1, z+1, maxU, minV);
 
 		//EAST
-		l = (world.getLightBrightness(x+1,y-1,z)+world.getLightBrightness(x+1,y,z))/2; tessellator.setColorRGBA((int) ((255*l)*0.6),(int) ((255*l)*0.6),(int) ((255*l)*0.6),255);
+		l = (world.getLightBrightness(x+1,y-1,z)+world.getLightBrightness(x+1,y,z))/2;
+		if (!fullbright) { tessellator.setColorRGBA((int) ((255*l)*0.6),(int) ((255*l)*0.6),(int) ((255*l)*0.6),255); }
+
 		tessellator.addVertexWithUV(x+1, y+0.1, z+1, minU, minV);
 		tessellator.addVertexWithUV(x+1+w, y-1+0.1, z+1, minU, maxV);
 		tessellator.addVertexWithUV(x+1+w, y-1+0.1, z, maxU, maxV);
 		tessellator.addVertexWithUV(x+1, y+0.1, z, maxU, minV);
 
 		//SOUTH
-		l = (world.getLightBrightness(x,y-1,z+1)+world.getLightBrightness(x,y,z+1))/2; tessellator.setColorRGBA((int) ((255*l)*0.8),(int) ((255*l)*0.8),(int) ((255*l)*0.8),255);
+		l = (world.getLightBrightness(x,y-1,z+1)+world.getLightBrightness(x,y,z+1))/2;
+		if (!fullbright) { tessellator.setColorRGBA((int) ((255*l)*0.8),(int) ((255*l)*0.8),(int) ((255*l)*0.8),255); }
 		tessellator.addVertexWithUV(x, y+0.1, z+1, minU, minV);
 		tessellator.addVertexWithUV(x, y -1+w, z+1 +w, minU, maxV);
 		tessellator.addVertexWithUV(x+1, y -1+w, z+1 +w, maxU, maxV);
 		tessellator.addVertexWithUV(x+1, y+0.1, z+1, maxU, minV);
 
 		//NORTH
-		l = (world.getLightBrightness(x,y-1,z-1)+world.getLightBrightness(x,y,z-1))/2; tessellator.setColorRGBA((int) (255*l*0.8),(int) (255*l*0.8),(int) (255*l*0.8),255);
+		l = (world.getLightBrightness(x,y-1,z-1)+world.getLightBrightness(x,y,z-1))/2;
+		if (!fullbright) { tessellator.setColorRGBA((int) (255*l*0.8),(int) (255*l*0.8),(int) (255*l*0.8),255); }
 		tessellator.addVertexWithUV(x+1, y+0.1, z, minU, minV);
 		tessellator.addVertexWithUV(x+1, y -1+0.1, z -w, minU, maxV);
 		tessellator.addVertexWithUV(x, y -1+0.1, z -w, maxU, maxV);

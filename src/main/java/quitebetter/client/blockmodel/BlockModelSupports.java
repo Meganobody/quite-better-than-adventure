@@ -25,7 +25,7 @@ public class BlockModelSupports<T extends BlockLogic> extends BlockModelStandard
 
 	public boolean shouldRenderSide(Side side, int x, int y, int z, int meta) {
 		Block frontblock = renderBlocks.blockAccess.getBlock(x-side.getOffsetX(),y-side.getOffsetY(),z-side.getOffsetZ());
-		return (!getBlockTextureFromSideAndMetadata(side, meta).getImageSource().contains("top") || (frontblock==null || !block.isCubeShaped()) );
+		return (!getBlockTextureFromSideAndMetadata(side, meta).getImageSource().contains("top") || (frontblock==null || !frontblock.isCubeShaped()) );
 	}
 
 	@Override
@@ -114,24 +114,25 @@ public class BlockModelSupports<T extends BlockLogic> extends BlockModelStandard
 		//OUTSIDE
 		for(Side side : Side.sides) {
 			Block frontblock = renderBlocks.blockAccess.getBlock(x+side.getOffsetX(),y+side.getOffsetY(),z+side.getOffsetZ());
-			if (!getBlockTextureFromSideAndMetadata(side, meta).getImageSource().contains("top") || (frontblock==null || !block.isCubeShaped()) ) {
+			if (!getBlockTextureFromSideAndMetadata(side, meta).getImageSource().contains("top") || (frontblock==null || !frontblock.isCubeShaped()) ) {
 				renderBlocks.renderSide(tessellator, this, bounds, x, y, z, r, g, b, side, meta);
 			}
 		}
 		//INSIDE
+		double in=0.995;
 		Side side;
 		side = Side.SOUTH;
-		if (shouldRenderSide(side,x,y,z,meta)) { renderBlocks.renderSouthFace(tessellator, bounds, x-side.getOffsetX(),y-side.getOffsetY(),z-side.getOffsetZ(), getBlockTextureFromSideAndMetadata(side,meta)); }
+		if (shouldRenderSide(side,x,y,z,meta)) { renderBlocks.renderSouthFace(tessellator, bounds, x-side.getOffsetX()*in,y-side.getOffsetY()*in,z-side.getOffsetZ()*in, getBlockTextureFromSideAndMetadata(side,meta)); }
 		side = Side.WEST;
-		if (shouldRenderSide(side,x,y,z,meta)) { renderBlocks.renderWestFace(tessellator, bounds, x-side.getOffsetX(),y-side.getOffsetY(),z-side.getOffsetZ(), getBlockTextureFromSideAndMetadata(side,meta)); }
+		if (shouldRenderSide(side,x,y,z,meta)) { renderBlocks.renderWestFace(tessellator, bounds, x-side.getOffsetX()*in,y-side.getOffsetY()*in,z-side.getOffsetZ()*in, getBlockTextureFromSideAndMetadata(side,meta)); }
 		side = Side.NORTH;
-		if (shouldRenderSide(side,x,y,z,meta)) { renderBlocks.renderNorthFace(tessellator, bounds, x-side.getOffsetX(),y-side.getOffsetY(),z-side.getOffsetZ(), getBlockTextureFromSideAndMetadata(side,meta)); }
+		if (shouldRenderSide(side,x,y,z,meta)) { renderBlocks.renderNorthFace(tessellator, bounds, x-side.getOffsetX()*in,y-side.getOffsetY()*in,z-side.getOffsetZ()*in, getBlockTextureFromSideAndMetadata(side,meta)); }
 		side = Side.EAST;
-		if (shouldRenderSide(side,x,y,z,meta)) { renderBlocks.renderEastFace(tessellator, bounds, x-side.getOffsetX(),y-side.getOffsetY(),z-side.getOffsetZ(), getBlockTextureFromSideAndMetadata(side,meta)); }
+		if (shouldRenderSide(side,x,y,z,meta)) { renderBlocks.renderEastFace(tessellator, bounds, x-side.getOffsetX()*in,y-side.getOffsetY()*in,z-side.getOffsetZ()*in, getBlockTextureFromSideAndMetadata(side,meta)); }
 		side = Side.TOP;
-		if (shouldRenderSide(side,x,y,z,meta)) { renderBlocks.renderTopFace(tessellator, bounds, x-side.getOffsetX(),y-side.getOffsetY(),z-side.getOffsetZ(), getBlockTextureFromSideAndMetadata(side,meta)); }
+		if (shouldRenderSide(side,x,y,z,meta)) { renderBlocks.renderTopFace(tessellator, bounds, x-side.getOffsetX()*in,y-side.getOffsetY()*in,z-side.getOffsetZ()*in, getBlockTextureFromSideAndMetadata(side,meta)); }
 		side = Side.BOTTOM;
-		if (shouldRenderSide(side,x,y,z,meta)) { renderBlocks.renderBottomFace(tessellator, bounds, x-side.getOffsetX(),y-side.getOffsetY(),z-side.getOffsetZ(), getBlockTextureFromSideAndMetadata(side,meta)); }
+		if (shouldRenderSide(side,x,y,z,meta)) { renderBlocks.renderBottomFace(tessellator, bounds, x-side.getOffsetX()*in,y-side.getOffsetY()*in,z-side.getOffsetZ()*in, getBlockTextureFromSideAndMetadata(side,meta)); }
 		renderBlocks.enableAO = false;
 		this.resetRenderBlocks();
 		return true;

@@ -1,10 +1,20 @@
 package quitebetter.core.util;
 
+import net.minecraft.client.entity.player.PlayerLocal;
+import net.minecraft.client.player.controller.PlayerController;
+import net.minecraft.client.player.controller.PlayerControllerMP;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
+import net.minecraft.core.net.packet.PacketContainerSetSlot;
+import net.minecraft.core.net.packet.PacketEntityFling;
+import net.minecraft.core.net.packet.PacketPlayerAction;
 import net.minecraft.core.player.inventory.container.ContainerInventory;
+import net.minecraft.server.entity.player.PlayerServer;
+import turniplabs.halplibe.HalpLibe;
+import turniplabs.halplibe.helper.EnvironmentHelper;
+import static quitebetter.core.ModCore.LOGGER;
 
 public class PlayerUtil {
 	public static boolean hasItemInHotbar(Player player, Item item) {
@@ -86,14 +96,15 @@ public class PlayerUtil {
 	public static int storeItemStack(Player player, ItemStack itemstack) {
 		ContainerInventory inv = player.inventory;
 		for(int i = 0; i < inv.mainInventory.length; ++i) {
-			ItemStack slot = inv.getItem(i);
-			if (slot==null || (slot.itemID==itemstack.itemID && (!slot.getHasSubtypes() || slot.getMetadata() == itemstack.getMetadata()) && slot.getData() == itemstack.getData() && ( slot.isStackable() && slot.getMaxStackSize()-itemstack.stackSize-slot.stackSize>=0 )) ) {
-				stackToInventory(player, i, itemstack);
+			if (stackToInventory(player,i,itemstack)) {
 				return i;
 			}
 		}
-
-
 		return -1;
+	}
+
+	public static boolean isArmorItemThis(Player player, int slot, Item item) {
+		ItemStack stack = player.inventory.armorItemInSlot(slot);
+		return stack!=null && stack.getItem().equals(item);
 	}
 }

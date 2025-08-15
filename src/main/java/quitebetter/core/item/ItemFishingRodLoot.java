@@ -39,8 +39,6 @@ public class ItemFishingRodLoot {
 			ModBlocks.GEODE.asItem(),
 			ModBlocks.GEODE.asItem(),
 			Items.BONE,
-			Items.QUARTZ,
-			Items.QUARTZ,
 			Blocks.OBSIDIAN.asItem(),
 			Blocks.OBSIDIAN.asItem(),
 		};

@@ -1,5 +1,11 @@
 package quitebetter.core.block;
 
+import net.minecraft.core.block.entity.TileEntity;
+import net.minecraft.core.entity.EntityItem;
+import net.minecraft.core.enums.EnumDropCause;
+import net.minecraft.core.item.ItemStack;
+import org.jetbrains.annotations.Nullable;
+import quitebetter.core.tileentity.TileEntityCrate;
 import quitebetter.core.tileentity.TileEntityFan;
 import net.minecraft.core.block.*;
 import net.minecraft.core.block.material.Material;
@@ -12,13 +18,13 @@ import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-public class BlockLogicFan extends BlockLogicRotatable {
+public class BlockLogicFan extends BlockLogicVeryRotatable {
 	public static final int MASK_DIRECTION = 0b00000111;
 	public static final int MASK_SIGNALOVERRIDE = 0b00001000;
-	public static final int MASK_SIGNAL = 0b01110000;
 	public boolean isActive;
 	public boolean isInverted;
 
@@ -39,12 +45,13 @@ public class BlockLogicFan extends BlockLogicRotatable {
 		return fan.equals(ModBlocks.IN_FAN) || fan.equals(ModBlocks.ACTIVE_IN_FAN);
 	}
 
-	public int getSignalLevel(World world, int x, int y, int z) {
-		return world.getBlockMetadata(x,y,z) & MASK_SIGNAL;
-	}
-
 	public boolean isActive() {
 		return this.isActive;
+	}
+
+	@Override
+	public ItemStack @Nullable [] getBreakResult(World world, EnumDropCause dropCause, int meta, TileEntity tileEntity) {
+		return dropCause != EnumDropCause.IMPROPER_TOOL ? new ItemStack[]{new ItemStack(ModBlocks.FAN)} : null;
 	}
 
 	public static void toggleInverted(World world, int x, int y, int z) {

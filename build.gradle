@@ -93,7 +93,10 @@ dependencies {
 	// If you do not need Halplibe you can comment this line out or delete this line
 	//implementation("turniplabs:halplibe:${project.halplibe_version}")
 	modImplementation(files("/lib/halplibe-${project.halplibe_version}.jar"))
+
 	modImplementation(files("/lib/btwaila-${project.btwaila_version}.jar"))
+
+	modImplementation(files("/lib/modnametooltip-${project.modnametooltip_version}.jar"))
 
 	modImplementation("turniplabs:modmenu-bta:${project.mod_menu_version}")
 

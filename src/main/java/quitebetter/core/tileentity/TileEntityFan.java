@@ -1,5 +1,9 @@
 package quitebetter.core.tileentity;
-
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.core.net.packet.PacketEntityFling;
+import net.minecraft.core.net.packet.PacketMovePlayer;
+import net.minecraft.server.entity.player.PlayerServer;
 import quitebetter.core.block.BlockLogicFan;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.Blocks;
@@ -9,6 +13,7 @@ import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.World;
+import turniplabs.halplibe.helper.EnvironmentHelper;
 
 import java.util.List;
 
@@ -60,11 +65,21 @@ public class TileEntityFan extends TileEntity {
 				for(int i = 0; i < list.size(); ++i) {
 					Entity entity = (Entity)list.get(i);
 					if (entity.canInteract()) {
-						entity.xd += (double) facing.getOffsetX() /6.5 /(BlockLogicFan.isInverted(block) ? -1 : 1);
-						entity.yd += (double) facing.getOffsetY() /6.5 /(BlockLogicFan.isInverted(block) ? -1 : 1);
-						entity.zd += (double) facing.getOffsetZ() /6.5 /(BlockLogicFan.isInverted(block) ? -1 : 1);
+						double xd = (double) facing.getOffsetX() /6.5 /(BlockLogicFan.isInverted(block) ? -1 : 1);
+						double yd = (double) facing.getOffsetY() /6.5 /(BlockLogicFan.isInverted(block) ? -1 : 1);
+						double zd = (double) facing.getOffsetZ() /6.5 /(BlockLogicFan.isInverted(block) ? -1 : 1);
+						if (EnvironmentHelper.isServerEnvironment() && entity instanceof PlayerServer) {
+							entity.xd += (double) facing.getOffsetX() /6.5 /(BlockLogicFan.isInverted(block) ? -1 : 1);
+							entity.yd += (double) facing.getOffsetY() /6.5 /(BlockLogicFan.isInverted(block) ? -1 : 1);
+							entity.zd += (double) facing.getOffsetZ() /6.5 /(BlockLogicFan.isInverted(block) ? -1 : 1);
+							entity.fallDistance = 0.0F;
+							PlayerServer player = (PlayerServer) entity;
+							player.playerNetServerHandler.sendPacket(new PacketEntityFling(player.id, entity.xd, entity.yd, entity.zd, 0, 0));
+						} else {
+							entity.fling(xd,yd,zd,0);
+						}
+						//FIRE
 						if ( ((BlockLogicFan) this.getBlock().getLogic()).isModifierFire(worldObj,x,y,z) ) {
-							LOGGER.info("TEST");
 							entity.remainingFireTicks += 300;
 						}
 					}
@@ -72,6 +87,4 @@ public class TileEntityFan extends TileEntity {
 			}
 		}
 	}
-
-
 }

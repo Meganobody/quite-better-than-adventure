@@ -7,6 +7,8 @@ import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.lang.I18n;
 import net.minecraft.core.player.inventory.slot.Slot;
 
+import java.util.Random;
+
 import static quitebetter.core.ModCore.LOGGER;
 
 public class ItemSack extends Item {
@@ -14,6 +16,10 @@ public class ItemSack extends Item {
 		super(name, namespaceId, id);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(63);
+	}
+
+	public static boolean isStackPushable(ItemStack stack) {
+		return stack.getMaxStackSize()>1;
 	}
 
 	public ItemStack getItem(ItemStack sack, int slot) {
@@ -67,7 +73,7 @@ public class ItemSack extends Item {
 		for (int i=getItemCount(sack); i>=0; i--) {
 			ItemStack stack = getItem(sack,i);
 			if (stack!=null) { LOGGER.info(stack.getMetadata()+" "+fndstack.getMetadata()); }
-			if (stack!=null && Item.getItem(stack.itemID)!=null && Item.getItem(stack.itemID).equals(Item.getItem(fndstack.itemID)) && stack.getMetadata()==fndstack.getMetadata()) {
+			if (stack!=null && Item.itemsList[stack.itemID]!=null && Item.getItem(stack.itemID)!=null && Item.getItem(stack.itemID).equals(Item.getItem(fndstack.itemID)) && stack.getMetadata()==fndstack.getMetadata()) {
 				return i;
 			}
 		}
@@ -77,7 +83,7 @@ public class ItemSack extends Item {
 	public ItemStack getItemStack(ItemStack sack, Item fnditem) {
 		for (int i=1; i<=getItemCount(sack); i++) {
 			ItemStack stack = getItem(sack,i);
-			if (stack!=null && Item.getItem(stack.itemID)!=null && Item.getItem(stack.itemID).equals(fnditem)) {
+			if (stack!=null && Item.itemsList[stack.itemID]!=null && Item.getItem(stack.itemID)!=null && Item.getItem(stack.itemID).equals(fnditem)) {
 				return stack;
 			}
 		}
@@ -118,6 +124,7 @@ public class ItemSack extends Item {
 
 	@Override
 	public ItemStack onInventoryInteract(Player player, Slot slot, ItemStack stackInSlot, boolean isItemGrabbed) {
+		Random random = new Random();
 		ItemStack sack;
 		if (isItemGrabbed) {
 			sack = player.inventory.getHeldItemStack();
@@ -127,7 +134,7 @@ public class ItemSack extends Item {
 		if (stackInSlot!=null) {
 			if (isItemGrabbed) {
 				int sizecor = GetStackSizeOverflow(sack,stackInSlot.stackSize);
-				if (sizecor<stackInSlot.stackSize) {
+				if (sizecor<stackInSlot.stackSize && isStackPushable(stackInSlot)) {
 					stackInSlot.stackSize -= sizecor;
 					sack = addItemStack(sack, stackInSlot);
 					player.inventory.setHeldItemStack(ConsumeDurability(sack, stackInSlot.stackSize));
@@ -136,11 +143,12 @@ public class ItemSack extends Item {
 					} else {
 						stackInSlot = null;
 					}
+					player.world.playSoundAtEntity(player,player,"random.equip",1F,2.0F + (random.nextFloat() - random.nextFloat()) * 0.4F);
 				}
 			} else if (player.inventory.getHeldItemStack()!=null) {
 				ItemStack held = player.inventory.getHeldItemStack();
 				int sizecor = GetStackSizeOverflow(sack,held.stackSize);
-				if (sizecor<held.stackSize) {
+				if (sizecor<held.stackSize && isStackPushable(held)) {
 					held.stackSize -= sizecor;
 					addItemStack(sack, held);
 					GetStackSizeOverflow(sack, held.stackSize);
@@ -151,6 +159,7 @@ public class ItemSack extends Item {
 					} else {
 						player.inventory.setHeldItemStack(null);
 					}
+					player.world.playSoundAtEntity(player,player,"random.equip",1F,2.0F + (random.nextFloat() - random.nextFloat()) * 0.4F);
 					stackInSlot = sack;
 				}
 			} else {
@@ -159,12 +168,14 @@ public class ItemSack extends Item {
 					removeLastStack(sack);
 					sack = ConsumeDurability(sack, -laststack.stackSize);
 					player.inventory.setHeldItemStack(laststack);
+					player.world.playSoundAtEntity(player,player,"random.equip",1F,2.0F + (random.nextFloat() - random.nextFloat()) * 0.4F);
 				}
 			}
 		} else {
 			ItemStack laststack = getItem(sack,getItemCount(sack)-1);
 			if (laststack!=null) {
 				removeLastStack(sack);
+				player.world.playSoundAtEntity(player,player,"random.equip",1F,2.0F + (random.nextFloat() - random.nextFloat()) * 0.4F);
 				sack = ConsumeDurability(sack, -laststack.stackSize);
 				stackInSlot = laststack;
 			}
@@ -175,20 +186,25 @@ public class ItemSack extends Item {
 
 	@Override
 	public String getTranslatedDescription(ItemStack itemstack) {
-		String desc = I18n.getInstance().translateKey(itemstack.getItemKey() + ".desc" + (isEmpty(itemstack) ? ".empty" : ".filled"));
+		StringBuilder desc = new StringBuilder(I18n.getInstance().translateKey(itemstack.getItemKey() + ".desc" + (isEmpty(itemstack) ? ".empty" : ".filled")));
 		if (itemstack.hasCustomName() && itemstack.getCustomName().toLowerCase().contains("mystery")) {
-			desc = I18n.getInstance().translateKey(itemstack.getItemKey() + ".desc.mystery");
-			return desc;
+			desc = new StringBuilder(I18n.getInstance().translateKey(itemstack.getItemKey() + ".desc.mystery"));
+			return desc.toString();
 		}
 		if (!isEmpty(itemstack)) {
 			for (int i=getItemCount(itemstack); i>=0; i--) {
 				ItemStack stack = getItem(itemstack,i);
 				if (stack!=null) {
-					String name = (stack.hasCustomName()?"§o"+stack.getCustomName():stack.getItem().getTranslatedName(stack))+(i<=0?"":",");
-					desc += (" x" + stack.stackSize + " " + name).replaceAll(" ", i==getItemCount(itemstack)-1?" §4":" §8");
+					if (i>getItemCount(itemstack)-5) {
+						String name = (stack.hasCustomName()?"§o"+stack.getCustomName():stack.getItem().getTranslatedName(stack))+(i<=0?"":",");
+						desc.append((" x" + stack.stackSize + " " + name).replaceAll(" ", i == getItemCount(itemstack) - 1 ? " §4" : " §8"));
+					} else {
+						desc.append(" §8...");
+						break;
+					}
 				}
 			}
 		}
-		return desc;
+		return desc.toString();
 	}
 }

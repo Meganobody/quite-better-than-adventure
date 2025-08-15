@@ -37,6 +37,7 @@ public class BlockLogicPedestal extends BlockLogic {
 		Block[] excepts = {
 			ModBlocks.SUPPORT_IRON,
 			ModBlocks.SUPPORT_STEEL,
+			ModBlocks.SUPPORT_WOOD,
 			ModBlocks.FAN,
 			ModBlocks.ACTIVE_FAN,
 			ModBlocks.IN_FAN,
@@ -46,7 +47,9 @@ public class BlockLogicPedestal extends BlockLogic {
 			Blocks.BRAZIER_INACTIVE,
 			Blocks.BRAZIER_ACTIVE, //Wanted to remove, but it looks cool.
 			Blocks.MESH,
-			Blocks.MESH_GOLD
+			Blocks.MESH_GOLD,
+			Blocks.ICE,
+			Blocks.PERMAICE
 		};
 		return Blocks.solid[blockId] || Arrays.asList(excepts).contains(Blocks.getBlock(blockId));
 	}

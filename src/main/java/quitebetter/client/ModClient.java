@@ -1,5 +1,6 @@
 package quitebetter.client;
 
+import net.minecraft.client.Minecraft;
 import quitebetter.client.blockmodel.BlockModels;
 import quitebetter.client.itemmodel.ItemModels;
 import net.fabricmc.api.EnvType;
@@ -10,10 +11,12 @@ import net.minecraft.client.render.TileEntityRenderDispatcher;
 import net.minecraft.client.render.block.color.BlockColorDispatcher;
 import net.minecraft.client.render.block.model.BlockModelDispatcher;
 import net.minecraft.client.render.item.model.ItemModelDispatcher;
+import quitebetter.core.util.PopUpUtil;
+import turniplabs.halplibe.util.ClientStartEntrypoint;
 import turniplabs.halplibe.util.ModelEntrypoint;
 
 @Environment(EnvType.CLIENT)
-public class ModClient implements ModInitializer, ModelEntrypoint {
+public class ModClient implements ModInitializer, ModelEntrypoint, ClientStartEntrypoint {
 	@Override
 	public void onInitialize() {}
 
@@ -31,4 +34,12 @@ public class ModClient implements ModInitializer, ModelEntrypoint {
 
 	@Override
 	public void initBlockColors(BlockColorDispatcher d) {}
+
+	@Override
+	public void beforeClientStart() {}
+
+	@Override
+	public void afterClientStart() {
+
+	}
 }

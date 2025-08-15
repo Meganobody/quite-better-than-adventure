@@ -10,7 +10,6 @@ import net.minecraft.core.sound.BlockSounds;
 import quitebetter.core.ModConfig;
 import turniplabs.halplibe.helper.BlockBuilder;
 
-import static quitebetter.core.ModCore.LOGGER;
 import static quitebetter.core.ModCore.MOD_ID;
 
 public class ModBlocks {
@@ -30,6 +29,7 @@ public class ModBlocks {
 	public static Block<BlockLogicSlab> SLAB_BRICK_OLIVINE;
 	public static Block<?> SUPPORT_STEEL;
 	public static Block<?> SUPPORT_IRON;
+	public static Block<?> SUPPORT_WOOD;
 	public static Block<?> MUSHROOM_GLOWING;
 	public static Block<?> PEDESTAL;
 	public static Block<?> BRICK_SNOW;
@@ -40,13 +40,34 @@ public class ModBlocks {
 	public static Block<?> CRATE_PAINTED;
 	public static Block<?> GEODE;
 
+	public static Block<?> BRICK_OBSIDIAN;
+	public static Block<BlockLogicStairs> STAIRS_BRICK_OBSIDIAN;
+	public static Block<BlockLogicSlab> SLAB_BRICK_OBSIDIAN;
+
+	public static Block<?> LANTERN_COAL;
+	public static Block<?> LANTERN_REDSTONE;
+	public static Block<?> LANTERN_MUSHROOM;
+	public static Block<?> OVERLAY_SEASHELL;
+
+	public static Block<?> BRICK_MUD;
+	public static Block<BlockLogicStairs> STAIRS_BRICK_MUD;
+	public static Block<BlockLogicSlab> SLAB_BRICK_MUD;
+
+	public static Block<?> BRICK_MUD_BAKED;
+	public static Block<BlockLogicStairs> STAIRS_BRICK_MUD_BAKED;
+	public static Block<BlockLogicSlab> SLAB_BRICK_MUD_BAKED;
+
+	public static Block<?> BRICK_CLAY_MOSSY;
+
+	public static Block<?> BLOCK_IRON_CORRUGATED;
+	public static Block<?> BLOCK_IRON_CORRUGATED_PAINTED;
+
 	public static int startingBlockId = ModConfig.startingBlockId;
 
-	private static int id(String name) {
+	public static Integer id(String name) {
 		try {
 			return ModConfig.cfg.getInt(ModConfig.BlockIDs+"."+name);
 		}catch (NullPointerException e) {
-			ModConfig.properties.addEntry(ModConfig.BlockIDs+"."+name, startingBlockId);
 			return startingBlockId++;
 		}
 	}
@@ -54,12 +75,13 @@ public class ModBlocks {
 	public static void Setup() {
 		//BONEBLOCK
 		BLOCK_BONE = new BlockBuilder(MOD_ID)
-			.setHardness(1.0F).setResistance(1.0F)
+			.setHardness(0.2F)
 			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
-			.build("block_bone", id("BLOCK_BONE"), b -> new BlockLogic(b, Material.marble) {});
+			.setBlockSound(BlockSounds.METAL)
+			.build("block_bone", id("BLOCK_BONE"), b -> new BlockLogicBoneBlock(b, Material.marble) {});
 		//OBSIDIAN POLISHED
 		OBSIDIAN_POLISHED = new BlockBuilder(MOD_ID)
-			.setHardness(20.0F).setResistance(2000.0F)
+			.setHardness(10.0F).setResistance(2000.0F)
 			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
 			.build("obsidian_polished", id("OBSIDIAN_POLISHED"), b -> new BlockLogic(b, Material.stone) {})
 			.withOverrideColor(MaterialColor.paintedBlack);
@@ -143,6 +165,11 @@ public class ModBlocks {
 			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
 			.setBlockSound(BlockSounds.METAL)
 			.build("support_iron", id("SUPPORT_IRON"), b -> new BlockLogicPillar(b, Material.metal) {});
+		SUPPORT_WOOD = new BlockBuilder(MOD_ID)
+			.setHardness(0.3F)
+			.setTags(BlockTags.MINEABLE_BY_AXE)
+			.setBlockSound(BlockSounds.WOOD)
+			.build("support_wood", id("SUPPORT_WOOD"), b -> new BlockLogicPillar(b, Material.wood) {});
 		//GLOWING MUSHROOM
 		MUSHROOM_GLOWING = new BlockBuilder(MOD_ID)
 			.setTags(BlockTags.PLANTABLE_IN_JAR)
@@ -186,5 +213,101 @@ public class ModBlocks {
 		GEODE = new BlockBuilder(MOD_ID)
 			.setHardness(10F).setResistance(25.0F)
 			.build("geode", id("GEODE"), b -> new BlockLogicGeode(b, Material.basalt) {});
+		//BRICK OBSIDIAN
+		BRICK_OBSIDIAN = new BlockBuilder(MOD_ID)
+			.setHardness(10F).setResistance(2000.0F)
+			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
+			.setBlockSound(BlockSounds.STONE)
+			.build("brick_obsidian", id("BRICK_OBSIDIAN"), b -> new BlockLogic(b, Material.stone) {})
+			.withOverrideColor(MaterialColor.paintedBlack);
+		STAIRS_BRICK_OBSIDIAN = new BlockBuilder(MOD_ID)
+			.setHardness(10F).setResistance(2000.0F)
+			.setUseInternalLight()
+			.setBlockSound(BlockSounds.STONE)
+			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
+			.build("stairs_brick_obsidian", id("STAIRS_BRICK_OBSIDIAN"), b -> new BlockLogicStairs(b, BRICK_OBSIDIAN) {});
+		SLAB_BRICK_OBSIDIAN = new BlockBuilder(MOD_ID)
+			.setHardness(10F).setResistance(2000.0F)
+			.setUseInternalLight()
+			.setBlockSound(BlockSounds.STONE)
+			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
+			.build("slab_brick_obsidian", id("SLAB_BRICK_OBSIDIAN"), b -> new BlockLogicSlab(b, BRICK_OBSIDIAN) {});
+		//LANTERN
+		LANTERN_COAL = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS)
+			.build("lantern_coal", id("LANTERN_COAL"), b -> new BlockLogicLanternCoal(b, Material.decoration) {})
+			.withLightEmission(1F);
+		LANTERN_REDSTONE = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS)
+			.build("lantern_redstone", id("LANTERN_REDSTONE"), b -> new BlockLogicLanternRedstone(b, Material.decoration) {})
+			.withLightEmission(0.5F);
+		LANTERN_MUSHROOM = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS)
+			.build("lantern_mushroom", id("LANTERN_MUSHROOM"), b -> new BlockLogicLanternMushroom(b, Material.decoration) {})
+			.withLightEmission(1F);
+		//OVERLAY SEASHELL
+		OVERLAY_SEASHELL = new BlockBuilder(MOD_ID)
+			.setTags(BlockTags.BROKEN_BY_FLUIDS,BlockTags.NOT_IN_CREATIVE_MENU)
+			.build("overlay_seashell", id("OVERLAY_SEASHELL"), b -> new BlockLogicOverlaySeashells(b, Material.decoration) {});
+		//BRICKS MUD
+		BRICK_MUD = new BlockBuilder(MOD_ID)
+			.setHardness(0.6F)
+			.setBlockSound(BlockSounds.GRAVEL)
+			.setTags(BlockTags.MINEABLE_BY_SHOVEL, BlockTags.GROWS_FLOWERS, BlockTags.GROWS_CACTI, BlockTags.GROWS_TREES, BlockTags.GROWS_SUGAR_CANE)
+			.build("brick_mud", id("BRICK_MUD"), b -> new BlockLogicMudBlock(b, Material.dirt, false, BRICK_MUD_BAKED) {})
+			.withOverrideColor(MaterialColor.dirt);
+		STAIRS_BRICK_MUD = new BlockBuilder(MOD_ID)
+			.setHardness(0.6F)
+			.setUseInternalLight()
+			.setBlockSound(BlockSounds.GRAVEL)
+			.setTags(BlockTags.MINEABLE_BY_SHOVEL)
+			.build("stairs_brick_mud", id("STAIRS_BRICK_MUD"), b -> new BlockLogicMudStairs(b, BRICK_MUD, false, STAIRS_BRICK_MUD_BAKED) {});
+		SLAB_BRICK_MUD = new BlockBuilder(MOD_ID)
+			.setHardness(0.6F)
+			.setUseInternalLight()
+			.setBlockSound(BlockSounds.GRAVEL)
+			.setTags(BlockTags.MINEABLE_BY_SHOVEL)
+			.build("slab_brick_mud", id("SLAB_BRICK_MUD"), b -> new BlockLogicMudSlab(b, BRICK_MUD, false, SLAB_BRICK_MUD_BAKED) {});
+		//BRICKS MUD BACKED
+		BRICK_MUD_BAKED = new BlockBuilder(MOD_ID)
+			.setHardness(1.5F)
+			.setBlockSound(BlockSounds.STONE)
+			.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.GROWS_FLOWERS, BlockTags.GROWS_CACTI, BlockTags.GROWS_TREES, BlockTags.GROWS_SUGAR_CANE)
+			.build("brick_mud_baked", id("BRICK_MUD_BAKED"), b -> new BlockLogicMudBlock(b, Material.steel, true, BRICK_MUD) {})
+			.withOverrideColor(MaterialColor.dirt);
+		STAIRS_BRICK_MUD_BAKED = new BlockBuilder(MOD_ID)
+			.setHardness(1.5F)
+			.setUseInternalLight()
+			.setBlockSound(BlockSounds.STONE)
+			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
+			.build("stairs_brick_mud_baked", id("STAIRS_BRICK_MUD_BAKED"), b -> new BlockLogicMudStairs(b, BRICK_MUD_BAKED, true, STAIRS_BRICK_MUD) {});
+		SLAB_BRICK_MUD_BAKED = new BlockBuilder(MOD_ID)
+			.setHardness(1.5F)
+			.setUseInternalLight()
+			.setBlockSound(BlockSounds.STONE)
+			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
+			.build("slab_brick_mud_baked", id("SLAB_BRICK_MUD_BAKED"), b -> new BlockLogicMudSlab(b, BRICK_MUD_BAKED, true, SLAB_BRICK_MUD) {});
+		BRICK_CLAY_MOSSY = new BlockBuilder(MOD_ID)
+			.setHardness(1F)
+			.setResistance(10.0F)
+			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
+			.build("brick_clay_mossy", id("BRICK_CLAY_MOSSY"), b -> new BlockLogic(b, Material.stone) {});
+		//CORRUGATED IRON BLOCK
+		BLOCK_IRON_CORRUGATED = new BlockBuilder(MOD_ID)
+			.setHardness(2F).setResistance(25.0F)
+			.setTags(BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.MINEABLE_BY_PICKAXE)
+			.build("block_iron_corrugated", id("BLOCK_IRON_CORRUGATED"), b -> new BlockLogicCorrugatedIron(b, Material.metal) {})
+			.setBlockItem(b -> new ItemBlock<>(BLOCK_IRON_CORRUGATED));
+		BLOCK_IRON_CORRUGATED_PAINTED = new BlockBuilder(MOD_ID)
+			.setHardness(2F).setResistance(25.0F)
+			.setTags(BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.MINEABLE_BY_PICKAXE, BlockTags.NOT_IN_CREATIVE_MENU)
+			.setBlockItem(b -> new ItemBlockPainted<>(b, true))
+			.build("block_iron_corrugated_painted", id("BLOCK_IRON_CORRUGATED_PAINTED"), b -> new BlockLogicCorrugatedIronPainted(b, Material.metal) {});
 	}
 }
