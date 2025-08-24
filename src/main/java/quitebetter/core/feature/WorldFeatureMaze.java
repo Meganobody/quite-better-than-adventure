@@ -18,6 +18,7 @@ import net.minecraft.core.world.biome.Biomes;
 import net.minecraft.core.world.generate.feature.WorldFeature;
 import quitebetter.core.block.ModBlocks;
 import quitebetter.core.item.ModItems;
+import quitebetter.core.util.WorldUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +31,7 @@ public class WorldFeatureMaze extends WorldFeature {
 	private int wallBlockB;
 	private int floorBlock;
 	private int slabBlock;
-	private int mazeDepth = ModFeatures.WATER_LEVEL+8;
+	private int mazeDepth = 24;
 	private int entranceHeight = 3;
 	private int roomSize = 2;
 	private int xSize = 5;
@@ -109,7 +110,7 @@ public class WorldFeatureMaze extends WorldFeature {
 
 	public void generateEntrance(World world, Random random, int blockX, int blockY, int blockZ) {
 		int size = this.roomSize;
-		int depth = blockY-this.mazeDepth;
+		int depth = blockY-(WorldUtil.getOceanLevel(world)-this.mazeDepth);
 		int height = this.entranceHeight;
 		//ENTRANCE
 		for (int x = blockX - size; x <= blockX + size; ++x) {
@@ -148,7 +149,7 @@ public class WorldFeatureMaze extends WorldFeature {
 			}
 		}
 
-		this.generateGrid(world, random, blockX, this.mazeDepth-1, blockZ, size, this.xSize, this.zSize);
+		this.generateGrid(world, random, blockX, (WorldUtil.getOceanLevel(world)-this.mazeDepth)-1, blockZ, size, this.xSize, this.zSize);
 	}
 
 	public void generateGrid(World world, Random random, int blockX, int blockY, int blockZ, int size, int xSize, int zSize) {

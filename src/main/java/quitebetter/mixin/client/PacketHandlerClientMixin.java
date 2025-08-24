@@ -3,11 +3,8 @@ package quitebetter.mixin.client;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.net.handler.PacketHandlerClient;
 import net.minecraft.client.world.WorldClientMP;
-import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.net.packet.PacketAddParticle;
 import net.minecraft.core.net.packet.PacketContainerSetSlot;
-import org.slf4j.Logger;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -30,11 +27,6 @@ public class PacketHandlerClientMixin {
 	@Shadow
 	Minecraft mc;
 
-
-	@Shadow
-	@Final
-	private static Logger LOGGER;
-
 	@Inject(
 		method = {"handleSpawnParticle"},
 		at = @At("HEAD"),
@@ -53,23 +45,12 @@ public class PacketHandlerClientMixin {
 
 	@Inject(
 		method = {"handleSetSlot"},
-		at = @At("HEAD"),
-		cancellable = true
+		at = @At("HEAD")
 	)
 	public void handleSetSlot(PacketContainerSetSlot containerSetslotPacket, CallbackInfo ci) {
-		LOGGER.info(containerSetslotPacket.itemSlot+"");
-		if (containerSetslotPacket.windowId == -1) {
-			mc.thePlayer.inventory.setHeldItemStack(containerSetslotPacket.myItemStack);
-		} else if (containerSetslotPacket.windowId == 0 && containerSetslotPacket.itemSlot >= 0 && containerSetslotPacket.itemSlot < 45) {
-			ItemStack itemstack = mc.thePlayer.inventorySlots.getSlot(containerSetslotPacket.itemSlot).getItemStack();
-			if (containerSetslotPacket.myItemStack != null && (itemstack == null || itemstack.stackSize < containerSetslotPacket.myItemStack.stackSize)) {
-				containerSetslotPacket.myItemStack.animationsToGo = 5;
-			}
-
-			mc.thePlayer.inventorySlots.setItem(containerSetslotPacket.itemSlot, containerSetslotPacket.myItemStack);
-		} else if (containerSetslotPacket.windowId == mc.thePlayer.craftingInventory.containerId) {
-			mc.thePlayer.craftingInventory.setItem(containerSetslotPacket.itemSlot, containerSetslotPacket.myItemStack);
+		if (containerSetslotPacket.windowId == 0 && containerSetslotPacket.itemSlot<9) {
+			containerSetslotPacket.itemSlot += 36;
+			LOGGER.warn("PacketContainerSetSlot was modified!");
 		}
-		ci.cancel();
 	}
 }

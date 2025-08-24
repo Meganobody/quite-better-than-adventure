@@ -77,9 +77,9 @@ public class BlockLogicCrate extends BlockLogic implements IPaintable, ILeftClic
 	@Override
 	public void onBlockLeftClicked(World world, int x, int y, int z, Player player, Side side) {
 		TileEntityCrate tile = (TileEntityCrate) world.getTileEntity(x,y,z);
-		if (tile!=null) {
+		if (tile!=null && (player.getHeldItem()==null || TileEntityCrate.canUseToTake(player.getHeldItem())) ) {
 			ItemStack stack = tile.takeStack();
-			if (stack != null && (player.getHeldItem()==null || TileEntityCrate.canUseToTake(player.getHeldItem()) )) {
+			if (stack != null) {
 				if (PlayerUtil.storeItemStack(player, stack) == -1) {
 					world.entityJoinedWorld(new EntityItem(world, player.x, player.y, player.z, stack));
 				}
@@ -97,7 +97,6 @@ public class BlockLogicCrate extends BlockLogic implements IPaintable, ILeftClic
 
 	@Override
 	public void onBlockRightClicked(World world, int x, int y, int z, Player player, Side side) {
-		Random rand = new Random();
 		TileEntityCrate tile = (TileEntityCrate) world.getTileEntity(x, y, z);
 		if (tile != null) {
 			if (EnvironmentHelper.isSinglePlayer() || EnvironmentHelper.isServerEnvironment()) {

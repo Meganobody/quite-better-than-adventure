@@ -421,7 +421,7 @@ public class TileEntityCrate extends TileEntityGlued {
 				ItemStack stack = player.inventory.getItem(index);
 				pushStack(player.getGamemode().getId() == 1 ? stack.copy() : stack);
 				if (player.getGamemode().getId() != 1) {
-					player.inventory.setItem(index, (ItemStack) (
+					PlayerUtil.inventorySetSlot(player, index, (ItemStack) (
 						stack.stackSize > 0 ? stack : null
 					));
 				}
@@ -457,10 +457,9 @@ public class TileEntityCrate extends TileEntityGlued {
 							}
 						}
 					}
-					player.inventory.setItem(index, (ItemStack) (
+					PlayerUtil.inventorySetSlot(player, index, (ItemStack) (
 						stack.stackSize > 0 ? stack : null
 					));
-					//((PlayerServer) player).playerNetServerHandler.sendPacket(new PacketContainerSetSlot(0, index, stack.stackSize > 0 ? stack : null));
 					index = PlayerUtil.findSlotInInventory(player, Item.getItem(this.itemID), this.itemMeta);
 					if (index != null) {
 						stack = player.inventory.getItem(index);
@@ -612,7 +611,7 @@ public class TileEntityCrate extends TileEntityGlued {
 	}
 
 	public void sendPacketsForCrates() {
-		if (EnvironmentHelper.isServerEnvironment()) {
+		if (EnvironmentHelper.isServerEnvironment() && this.upperHeight!=null && this.lowerHeight!=null) {
 			assert worldObj != null;
 			for (int yi = this.upperHeight; yi >= this.lowerHeight; yi--) {
 				sendTilePacket(x, yi, z);

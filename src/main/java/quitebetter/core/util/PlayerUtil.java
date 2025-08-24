@@ -10,6 +10,7 @@ import net.minecraft.core.item.Items;
 import net.minecraft.core.net.packet.PacketContainerSetSlot;
 import net.minecraft.core.net.packet.PacketEntityFling;
 import net.minecraft.core.net.packet.PacketPlayerAction;
+import net.minecraft.core.net.packet.PacketTileEntityData;
 import net.minecraft.core.player.inventory.container.ContainerInventory;
 import net.minecraft.server.entity.player.PlayerServer;
 import turniplabs.halplibe.HalpLibe;
@@ -73,7 +74,8 @@ public class PlayerUtil {
 	}
 
 	public static Integer findSlotInInventory(Player player, Item item, int meta) {
-		for (int i=0; i<36; i++) {
+		ContainerInventory inv = player.inventory;
+		for(int i = 0; i < inv.mainInventory.length; ++i) {
 			ItemStack slot = player.inventory.getItem(i);
 			if (slot!=null && slot.getItem().equals(item) && (!slot.getHasSubtypes() || slot.getMetadata() == meta)) {
 				return i;
@@ -106,5 +108,21 @@ public class PlayerUtil {
 	public static boolean isArmorItemThis(Player player, int slot, Item item) {
 		ItemStack stack = player.inventory.armorItemInSlot(slot);
 		return stack!=null && stack.getItem().equals(item);
+	}
+
+	public static void inventorySetSlot(Player player, int index, ItemStack stack) {
+		player.inventory.setItem(index, stack);
+		if (EnvironmentHelper.isServerEnvironment()) {
+			ServerUtil.sendToWorldPlayers(player.world,new PacketContainerSetSlot(0,index,stack));
+		}
+	}
+
+	public static void inventoryInfo(Player player) {
+		ContainerInventory inv = player.inventory;
+		LOGGER.info("inventory contents:");
+		for(int i = 0; i < inv.mainInventory.length; ++i) {
+			LOGGER.info("	slot {} has {};",i,inv.getItem(i));
+		}
+		LOGGER.info("end of the inventory.");
 	}
 }

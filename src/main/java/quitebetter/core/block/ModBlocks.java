@@ -82,7 +82,7 @@ public class ModBlocks {
 		//OBSIDIAN POLISHED
 		OBSIDIAN_POLISHED = new BlockBuilder(MOD_ID)
 			.setHardness(10.0F).setResistance(2000.0F)
-			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
+			.setTags(BlockTags.MINEABLE_BY_PICKAXE,BlockTags.PISTON_CRUSHING)
 			.build("obsidian_polished", id("OBSIDIAN_POLISHED"), b -> new BlockLogic(b, Material.stone) {})
 			.withOverrideColor(MaterialColor.paintedBlack);
 		//SEASHELLTILES
@@ -216,7 +216,7 @@ public class ModBlocks {
 		//BRICK OBSIDIAN
 		BRICK_OBSIDIAN = new BlockBuilder(MOD_ID)
 			.setHardness(10F).setResistance(2000.0F)
-			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
+			.setTags(BlockTags.MINEABLE_BY_PICKAXE,BlockTags.PISTON_CRUSHING)
 			.setBlockSound(BlockSounds.STONE)
 			.build("brick_obsidian", id("BRICK_OBSIDIAN"), b -> new BlockLogic(b, Material.stone) {})
 			.withOverrideColor(MaterialColor.paintedBlack);
@@ -224,13 +224,13 @@ public class ModBlocks {
 			.setHardness(10F).setResistance(2000.0F)
 			.setUseInternalLight()
 			.setBlockSound(BlockSounds.STONE)
-			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
+			.setTags(BlockTags.MINEABLE_BY_PICKAXE,BlockTags.PISTON_CRUSHING)
 			.build("stairs_brick_obsidian", id("STAIRS_BRICK_OBSIDIAN"), b -> new BlockLogicStairs(b, BRICK_OBSIDIAN) {});
 		SLAB_BRICK_OBSIDIAN = new BlockBuilder(MOD_ID)
 			.setHardness(10F).setResistance(2000.0F)
 			.setUseInternalLight()
 			.setBlockSound(BlockSounds.STONE)
-			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
+			.setTags(BlockTags.MINEABLE_BY_PICKAXE,BlockTags.PISTON_CRUSHING)
 			.build("slab_brick_obsidian", id("SLAB_BRICK_OBSIDIAN"), b -> new BlockLogicSlab(b, BRICK_OBSIDIAN) {});
 		//LANTERN
 		LANTERN_COAL = new BlockBuilder(MOD_ID)

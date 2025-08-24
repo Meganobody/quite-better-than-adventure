@@ -197,12 +197,12 @@ public class ModRecipes {
 		RecipeBuilder.Shaped(MOD_ID,
 				"#", "##", "###")
 			.addInput('#', ModBlocks.BRICK_OBSIDIAN)
-			.create("obsidian_bricks_stairs_craft", new ItemStack(ModBlocks.STAIRS_BRICK_OLIVINE,4));
+			.create("obsidian_bricks_stairs_craft", new ItemStack(ModBlocks.STAIRS_BRICK_OBSIDIAN,4));
 		//OBSIDIAN BRICKS SLAB
 		RecipeBuilder.Shaped(MOD_ID,
 				"###")
 			.addInput('#', ModBlocks.BRICK_OBSIDIAN)
-			.create("obsidian_bricks_slab_craft", new ItemStack(ModBlocks.SLAB_BRICK_OLIVINE,6));
+			.create("obsidian_bricks_slab_craft", new ItemStack(ModBlocks.SLAB_BRICK_OBSIDIAN,6));
 		//LANTERN COAL
 		RecipeBuilder.Shaped(MOD_ID,
 						"@",

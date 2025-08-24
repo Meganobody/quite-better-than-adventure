@@ -1,6 +1,6 @@
 # CLIMBING HOOK
-item.quitebetter.climbinghook.name=Climbing Hook
-item.quitebetter.climbinghook.desc=Tool for easier climbing in nature. Needs a sturdy surface!
+item.quitebetter.climbing.hook.name=Climbing Hook
+item.quitebetter.climbing.hook.desc=Tool for easier climbing in nature. Needs a sturdy surface!
 
 # WRENCH
 item.quitebetter.wrench.name=Wrench
@@ -13,7 +13,7 @@ item.quitebetter.meta.wrench.info=Meta of the block is changed from * to
 
 # SEASHELL
 item.quitebetter.seashell.name=Seashell
-item.quitebetter.seashell.desc=Beautiful gift of waters
+item.quitebetter.seashell.desc=A beautiful gift of waters
 
 # PEDESTAL
 item.quitebetter.pedestal.name=Pedestal

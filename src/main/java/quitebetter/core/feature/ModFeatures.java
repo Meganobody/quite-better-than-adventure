@@ -7,13 +7,12 @@ import net.minecraft.core.world.biome.Biome;
 import net.minecraft.core.world.biome.BiomeOutback;
 import net.minecraft.core.world.chunk.Chunk;
 import net.minecraft.core.world.generate.feature.WorldFeatureLabyrinth;
+import quitebetter.core.util.WorldUtil;
 
 import java.util.Arrays;
 import java.util.Random;
 
 public class ModFeatures {
-	public static int WATER_LEVEL = 100;
-
 	public static boolean TreeGeneration(World world, Random random, int x, int y, int z, Class<?> treeclass) {
 		WorldFeatureGlowingMushrooms.PlaceNearTree(world, random, x, y, z, world.getBlockBiome(x,y,z));
 		return true;
@@ -28,7 +27,7 @@ public class ModFeatures {
 		if (Arrays.asList(WorldFeatureMaze.allowedBiomes).contains(biome)) {
 			if (random.nextInt(65)==0) {
 				int topBlock = world.getHeightValue(x, z);
-				if (topBlock > WATER_LEVEL+5) {
+				if (topBlock > WorldUtil.getOceanLevel(world)+5) {
 					(new WorldFeatureMaze()).place(world, ChunkRandom, x, topBlock, z);
 				}
 			}

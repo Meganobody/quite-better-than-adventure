@@ -141,6 +141,7 @@ public class ItemWrench extends Item {
 		if (block != null) {
 			BlockLogic logic = block.getLogic();
 			int meta = world.getBlockMetadata(x,y,z);
+
 			if (logic instanceof BlockLogicRotatable) {
 				world.setBlockMetadataWithNotify(x, y, z,
 					BlockLogicRotatable.setDirection(meta,
@@ -168,6 +169,11 @@ public class ItemWrench extends Item {
 					BlockLogicAxisAligned.axisToMeta(
 						rotateAxisAligned(BlockLogicAxisAligned.metaToAxis(meta), side)
 					)
+				);
+				success = true;
+			} else if (logic instanceof BlockLogicStairsPainted) {
+				world.setBlockMetadataWithNotify(x, y, z,
+					(meta & 240) | rotateStairs(meta & 15, side)
 				);
 				success = true;
 			} else if (logic instanceof BlockLogicStairs) {

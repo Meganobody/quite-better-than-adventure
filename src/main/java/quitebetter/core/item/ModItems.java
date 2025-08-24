@@ -34,7 +34,7 @@ public class ModItems {
 		}
 	}
 	public static String key(String name) {
-		return MOD_ID+":item/"+(name.replace('_','.'));
+		return MOD_ID+":item/"+(name.replace('.','_'));
 	}
 
 	public static void Setup() {
