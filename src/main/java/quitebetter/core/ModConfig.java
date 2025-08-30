@@ -25,7 +25,7 @@ public class ModConfig {
 	);
 	public static TomlConfigHandler cfg;
 
-	public static int startingItemId = 20000;
+	public static int startingItemId = 30000;
 	public static int startingBlockId = 4000;
 
 	public static final String BlockIDs = "Block IDs";
