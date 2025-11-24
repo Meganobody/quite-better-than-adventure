@@ -27,20 +27,36 @@ tile.quitebetter.pedestal.desc=A good way to highlight your achievements.
 
 
 # COAL LANTERN
-tile.quitebetter.lantern.coal.name=Iron Lantern
 tile.quitebetter.lantern.coal.name=Lantern
 tile.quitebetter.lantern.coal.desc=Metal lamp with a torch inside.
 
+# EMPTY LANTERN
+tile.quitebetter.lantern.empty.name=Empty Lantern
+tile.quitebetter.lantern.empty.desc=Metal lamp with nothing inside.
+
 # REDSTONE LANTERN
-tile.quitebetter.lantern.redstone.name=Redstone Iron Lantern
-tile.quitebetter.lantern.redstone.desc=Metal lamp with a redstone torch inside.
 tile.quitebetter.lantern.redstone.name=Redstone Lantern
 tile.quitebetter.lantern.redstone.desc=Metal lamp with a redstone torch inside, that can transit redstone signal.
 tile.quitebetter.lantern.redstone.idle.name=Unlit Redstone Lantern
 tile.quitebetter.lantern.redstone.idle.desc=Metal lamp with an redstone torch inside, that can transmit redstone signal.
 
+#ENCASED REDSTONE LANTERN
+tile.quitebetter.lantern.redstone.encased.name=Encased Redstone Lantern
+tile.quitebetter.lantern.redstone.encased.desc=Metal lamp with a redstone torch inside, that can transmit redstone signal directly over the line.
+tile.quitebetter.lantern.redstone.encased.idle.name=Unlit Encased Redstone Lantern
+tile.quitebetter.lantern.redstone.encased.idle.desc=Metal lamp with a redstone torch inside, that can transmit redstone signal directly over the line.
+
+# SWITCH LANTERN
+tile.quitebetter.lantern.switch.name=Latch Redstone Lantern
+tile.quitebetter.lantern.switch.desc=Metal lamp with a redstone mechanism inside, that works like a automated lever.
+tile.quitebetter.lantern.switch.idle.name=Unlit Latch Redstone Lantern
+tile.quitebetter.lantern.switch.idle.desc=Metal lamp with a redstone mechanism inside, that works like a automated lever.
+tile.quitebetter.lantern.switch.input.name=Powered Latch Redstone Lantern
+tile.quitebetter.lantern.switch.input.desc=Metal lamp with a redstone mechanism inside, that works like a automated lever.
+tile.quitebetter.lantern.switch.idle.input.name=Powered Unlit Latch Redstone Lantern
+tile.quitebetter.lantern.switch.idle.input.desc=Metal lamp with a redstone mechanism inside, that works like a automated lever.
+
 # GLOWING MUSHROOM LANTERN
-tile.quitebetter.lantern.mushroom.name=Glowing Iron Lantern
 tile.quitebetter.lantern.mushroom.name=Glowing Lantern
 tile.quitebetter.lantern.mushroom.desc=Metal lamp with a glowing mushroom inside.
 

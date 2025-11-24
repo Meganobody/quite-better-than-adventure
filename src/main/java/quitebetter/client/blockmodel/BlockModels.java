@@ -84,6 +84,11 @@ public class BlockModels {
 		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_REDSTONE).setAllTextures(0,PathTo("lantern_redstone")));
 		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_REDSTONE_IDLE).setAllTextures(0,PathTo("lantern_redstone_idle")));
 		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_REDSTONE_ENCASED).setAllTextures(0,PathTo("lantern_redstone_encased")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_REDSTONE_ENCASED_IDLE).setAllTextures(0,PathTo("lantern_redstone_encased_idle")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_SWITCH).setAllTextures(0,PathTo("lantern_switch")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_SWITCH_IDLE).setAllTextures(0,PathTo("lantern_switch_idle")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_SWITCH_INPUT).setAllTextures(0,PathTo("lantern_switch_input")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_SWITCH_IDLE_INPUT).setAllTextures(0,PathTo("lantern_switch_idle_input")));
 		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_MUSHROOM).setAllTextures(0,PathTo("lantern_mushroom")));
 		//SEASHELL
 		d.addDispatch(new BlockModelOverlaySeashell<>(ModBlocks.OVERLAY_SEASHELL));

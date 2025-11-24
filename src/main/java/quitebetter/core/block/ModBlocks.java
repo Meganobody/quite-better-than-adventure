@@ -48,6 +48,12 @@ public class ModBlocks {
 	public static Block<BlockLogicLantern> LANTERN_EMPTY;
 	public static Block<BlockLogicLantern> LANTERN_REDSTONE;
 	public static Block<BlockLogicLantern> LANTERN_REDSTONE_IDLE;
+	public static Block<BlockLogicLantern> LANTERN_REDSTONE_ENCASED;
+	public static Block<BlockLogicLantern> LANTERN_REDSTONE_ENCASED_IDLE;
+	public static Block<BlockLogicLantern> LANTERN_SWITCH;
+	public static Block<BlockLogicLantern> LANTERN_SWITCH_IDLE;
+	public static Block<BlockLogicLantern> LANTERN_SWITCH_INPUT;
+	public static Block<BlockLogicLantern> LANTERN_SWITCH_IDLE_INPUT;
 	public static Block<BlockLogicLantern> LANTERN_MUSHROOM;
 	public static Block<?> OVERLAY_SEASHELL;
 
@@ -96,6 +102,36 @@ public class ModBlocks {
 			.setTicking(true)
 			.setTags(BlockTags.CAN_HANG_OFF, BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
 			.build("lantern_redstone_idle", id("LANTERN_REDSTONE_IDLE"), b -> new BlockLogicLanternRedstone(b, false) {});
+		LANTERN_REDSTONE_ENCASED = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS)
+			.build("lantern_redstone_encased", id("LANTERN_REDSTONE_ENCASED"), b -> new BlockLogicLanternRedstoneEncased(b, true) {});
+		LANTERN_REDSTONE_ENCASED_IDLE = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF, BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+			.build("lantern_redstone_encased_idle", id("LANTERN_REDSTONE_ENCASED_IDLE"), b -> new BlockLogicLanternRedstoneEncased(b, false) {});
+		LANTERN_SWITCH = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS)
+			.build("lantern_switch", id("LANTERN_SWITCH"), b -> new BlockLogicLanternSwitch(b, true, false) {});
+		LANTERN_SWITCH_IDLE = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF, BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+			.build("lantern_switch_idle", id("LANTERN_SWITCH_IDLE"), b -> new BlockLogicLanternSwitch(b, false, false) {});
+		LANTERN_SWITCH_INPUT = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+			.build("lantern_switch_input", id("LANTERN_SWITCH_INPUT"), b -> new BlockLogicLanternSwitch(b, true, true) {});
+		LANTERN_SWITCH_IDLE_INPUT = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF, BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+			.build("lantern_switch_idle_input", id("LANTERN_SWITCH_IDLE_INPUT"), b -> new BlockLogicLanternSwitch(b, false, true) {});
 		LANTERN_MUSHROOM = new BlockBuilder(MOD_ID)
 			.setHardness(0.1F)
 			.setTicking(true)
@@ -261,25 +297,7 @@ public class ModBlocks {
 			.setBlockSound(BlockSounds.STONE)
 			.setTags(BlockTags.MINEABLE_BY_PICKAXE,BlockTags.PISTON_CRUSHING)
 			.build("slab_brick_obsidian", id("SLAB_BRICK_OBSIDIAN"), b -> new BlockLogicSlab(b, BRICK_OBSIDIAN) {});
-		//LANTERN
-		LANTERN_COAL = new BlockBuilder(MOD_ID)
-			.setHardness(0.1F)
-			.setTicking(true)
-			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS)
-			.build("lantern_coal", id("LANTERN_COAL"), b -> new BlockLogicLanternCoal(b, Material.decoration) {})
-			.withLightEmission(1F);
-		LANTERN_REDSTONE = new BlockBuilder(MOD_ID)
-			.setHardness(0.1F)
-			.setTicking(true)
-			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS)
-			.build("lantern_redstone", id("LANTERN_REDSTONE"), b -> new BlockLogicLanternRedstone(b, Material.decoration) {})
-			.withLightEmission(0.5F);
-		LANTERN_MUSHROOM = new BlockBuilder(MOD_ID)
-			.setHardness(0.1F)
-			.setTicking(true)
-			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS)
-			.build("lantern_mushroom", id("LANTERN_MUSHROOM"), b -> new BlockLogicLanternMushroom(b, Material.decoration) {})
-			.withLightEmission(1F);
+		
 		//OVERLAY SEASHELL
 		OVERLAY_SEASHELL = new BlockBuilder(MOD_ID)
 			.setTags(BlockTags.BROKEN_BY_FLUIDS,BlockTags.NOT_IN_CREATIVE_MENU)
