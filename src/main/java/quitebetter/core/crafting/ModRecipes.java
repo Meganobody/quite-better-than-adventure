@@ -210,6 +210,12 @@ public class ModRecipes {
 			.addInput('#', Items.INGOT_IRON)
 			.addInput('@', Blocks.TORCH_COAL)
 			.create("lantern_coal_craft", new ItemStack(ModBlocks.LANTERN_COAL,1));
+		//LANTERN EMPTY
+		RecipeBuilder.Shaped(MOD_ID,
+				"#",
+				"#")
+			.addInput('#', Items.INGOT_IRON)
+			.create("lantern_empty_craft", new ItemStack(ModBlocks.LANTERN_EMPTY,2));
 		//LANTERN REDSTONE
 		RecipeBuilder.Shaped(MOD_ID,
 				"@",

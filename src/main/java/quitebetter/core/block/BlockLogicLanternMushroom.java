@@ -12,9 +12,11 @@ import net.minecraft.core.world.WorldSource;
 
 import java.util.Random;
 
+public class BlockLogicLanternMushroom extends BlockLogicLantern {
 
 	public BlockLogicLanternMushroom(Block<?> block) {
 		super(block);
+		block.withLightEmission(15);
 	}
 	public int getLightEmission()
 	{
@@ -22,4 +24,14 @@ import java.util.Random;
 	}
 	public void animationTick(World world, int x, int y, int z, Random rand) {}
 	@Override
+	protected @Nullable ItemStack putItem(World world, int x, int y, int z, @Nullable ItemStack itemStack, @Nullable Entity entity)
+	{
+		world.playSoundEffect(entity, SoundCategory.WORLD_SOUNDS, x, y, z, "random.pop", 0.1f, 0.5f);
+		world.setBlockAndMetadataWithNotify(x, y, z, ModBlocks.LANTERN_EMPTY.id(), world.getBlockMetadata(x, y, z));
+		return new ItemStack(ModBlocks.MUSHROOM_GLOWING);
+	}
+	@Override
+	protected boolean canPutItem(World world, int x, int y, int z, @Nullable ItemStack itemStack) {
+		return itemStack == null;
+	}
 }

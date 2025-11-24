@@ -44,10 +44,8 @@ public class ModBlocks {
 	public static Block<BlockLogicStairs> STAIRS_BRICK_OBSIDIAN;
 	public static Block<BlockLogicSlab> SLAB_BRICK_OBSIDIAN;
 
-	public static Block<?> LANTERN_COAL;
-	public static Block<?> LANTERN_REDSTONE;
-	public static Block<?> LANTERN_MUSHROOM;
 	public static Block<BlockLogicLantern> LANTERN_COAL;
+	public static Block<BlockLogicLantern> LANTERN_EMPTY;
 	public static Block<BlockLogicLantern> LANTERN_REDSTONE;
 	public static Block<BlockLogicLantern> LANTERN_REDSTONE_IDLE;
 	public static Block<BlockLogicLantern> LANTERN_MUSHROOM;
@@ -77,6 +75,33 @@ public class ModBlocks {
 	}
 
 	public static void Setup() {
+		//LANTERN
+		LANTERN_COAL = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS)
+			.build("lantern_coal", id("LANTERN_COAL"), b -> new BlockLogicLanternCoal(b) {});
+		LANTERN_EMPTY = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF, BlockTags.BROKEN_BY_FLUIDS)
+			.build("lantern_empty", id("LANTERN_EMPTY"), b -> new BlockLogicLanternEmpty(b) {});
+		LANTERN_REDSTONE = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS)
+			.build("lantern_redstone", id("LANTERN_REDSTONE"), b -> new BlockLogicLanternRedstone(b, true) {});
+		LANTERN_REDSTONE_IDLE = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF, BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+			.build("lantern_redstone_idle", id("LANTERN_REDSTONE_IDLE"), b -> new BlockLogicLanternRedstone(b, false) {});
+		LANTERN_MUSHROOM = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS)
+			.build("lantern_mushroom", id("LANTERN_MUSHROOM"), b -> new BlockLogicLanternMushroom(b) {});
+			
 		//BONEBLOCK
 		BLOCK_BONE = new BlockBuilder(MOD_ID)
 			.setHardness(0.2F)

@@ -33,6 +33,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 
 public abstract class BlockLogicLantern extends BlockLogicFullyRotatable 
+	implements ILeftClickable 
 {
 	public static final int MASK_DIRECTION = 7;
 	public BlockLogicLantern(Block<?> block) {
@@ -171,5 +172,58 @@ public abstract class BlockLogicLantern extends BlockLogicFullyRotatable
 
 	public int getPistonPushReaction(World world, int x, int y, int z) {
 		return Material.PISTON_DESTROY_ON_PUSH;
+	}
+	protected abstract boolean canPutItem(World world, int x, int y, int z, @Nullable ItemStack itemStack);
+	protected abstract @Nullable ItemStack putItem(World world, int x, int y, int z, @Nullable ItemStack itemStack, @Nullable Entity entity);
+
+   	public void onActivatorInteract(World world, int x, int y, int z, TileEntityActivator activator, Direction direction)
+	{
+		ItemStack inputStack = activator.getItem(activator.stackSelector);
+		if (!canPutItem(world, x, y, z, inputStack))
+			return;
+		ItemStack outputStack = putItem(world, x, y, z, inputStack, null);
+		
+		if (inputStack != null)
+		{
+			activator.removeItem(activator.stackSelector, 1);
+		}
+		if (outputStack != null)
+		{
+			if (inputStack == null || inputStack.stackSize == 0)
+				activator.setItem(activator.stackSelector, outputStack);
+			else if (inputStack.canStackWith(outputStack))
+				activator.pickup(world, null);
+			else
+				world.dropItem(x, y, z, outputStack);
+		}
+   	}
+	@Override
+	public boolean isClimbable(World world, int x, int y, int z) {
+		return getDirection(world.getBlockMetadata(x, y, z)).isVertical();
+   	}
+	@Override
+	public void onBlockLeftClicked(World world, int x, int y, int z, Player player, Side side) {
+		if (!player.isSneaking()) return;
+		ItemStack inputStack = player.getHeldItem();
+		if (!canPutItem(world, x, y, z, inputStack))
+			return;
+		@Nullable ItemStack outputStack = putItem(world, x, y, z, inputStack, null);
+		
+		if (player.gamemode != Gamemode.creative && inputStack != null)
+		{
+			inputStack.stackSize--;
+		}
+		if (player.gamemode == Gamemode.creative && outputStack != null && player.hasItem(outputStack.getItem())) return;
+		if (outputStack != null)
+		{
+			if (inputStack == null || inputStack.stackSize == 0)
+				player.inventory.setHeldItemStack(outputStack);
+			else
+				world.dropItem(x, y, z, outputStack);
+		}
+	}
+	@Override
+	public boolean preventsBreaking(World world, int x, int y, int z, Player player, Side side) {
+		return player.isSneaking() && canPutItem(world, x, y, z, player.getHeldItem());// && canPutItem(world, x, y, z, player.getHeldItem());
 	}
 }

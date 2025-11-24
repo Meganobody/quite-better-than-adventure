@@ -130,12 +130,4 @@ public class BlockLogicLanternRedstone extends BlockLogicLantern {
 		double zPos = (double)z + (double)0.5F;
 		world.spawnParticle("reddust", xPos, yPos, zPos, (double)0.0F, (double)0.0F, (double)0.0F, 10);
 	}
-
-	public boolean getSignal(WorldSource worldSource, int x, int y, int z, Side side) {
-		return true;
-	}
-
-	public boolean isSignalSource() {
-		return true;
-	}
 }

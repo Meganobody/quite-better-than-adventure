@@ -80,6 +80,7 @@ public class BlockModels {
 		d.addDispatch(new BlockModelSlab<>(ModBlocks.SLAB_BRICK_OBSIDIAN).setAllTextures(0,PathTo("brick_obsidian")));
 		//LANTERN
 		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_COAL).setAllTextures(0,PathTo("lantern_coal")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_EMPTY).setAllTextures(0,PathTo("lantern_empty")));
 		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_REDSTONE).setAllTextures(0,PathTo("lantern_redstone")));
 		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_REDSTONE_IDLE).setAllTextures(0,PathTo("lantern_redstone_idle")));
 		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_REDSTONE_ENCASED).setAllTextures(0,PathTo("lantern_redstone_encased")));
