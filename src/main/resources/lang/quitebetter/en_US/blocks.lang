@@ -17,7 +17,7 @@ tile.quitebetter.geode.desc=A rock that contains minerals inside.
 # FAN
 tile.quitebetter.fan.name=Fan
 tile.quitebetter.fan.desc=Blows away everything.
-tile.quitebetter.active.fan.name=Fan
+tile.quitebetter.active.fan.name=Active Fan
 tile.quitebetter.active.fan.desc=Blows away everything.
 
 # PEDESTAL

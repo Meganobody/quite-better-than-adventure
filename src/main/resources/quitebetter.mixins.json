@@ -44,7 +44,6 @@
     "client.PacketHandlerClientMixin",
     "client.PlayerControllerMixin",
     "client.PlayerControllerSPMixin",
-    "client.TextureMagangerMixin",
     "client.TileEntityRenderDispatcherMixin",
     "client.TileEntityRendererFlagMixin"
   ],

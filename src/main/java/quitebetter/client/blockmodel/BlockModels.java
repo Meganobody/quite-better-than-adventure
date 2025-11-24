@@ -4,6 +4,7 @@ import quitebetter.core.block.ModBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.block.model.*;
+import net.minecraft.core.util.helper.Side;
 
 import static quitebetter.core.ModCore.MOD_ID;
 
@@ -36,10 +37,24 @@ public class BlockModels {
 		d.addDispatch(new BlockModelStandard<>(ModBlocks.HAZARD).setAllTextures(0,PathTo("hazard_block","default")));
 		d.addDispatch(new BlockModelHazardPainted<>(ModBlocks.HAZARD_PAINTED));
 		//FAN
-		d.addDispatch(new BlockModelFan<>(ModBlocks.FAN,false,false));
-		d.addDispatch(new BlockModelFan<>(ModBlocks.ACTIVE_FAN,true,false));
-		d.addDispatch(new BlockModelFan<>(ModBlocks.IN_FAN,false,true));
-		d.addDispatch(new BlockModelFan<>(ModBlocks.ACTIVE_IN_FAN,true,true));
+		d.addDispatch(new BlockModelFan<>(ModBlocks.FAN)
+							.setTex(0, PathTo("fan", "bottom"), Side.BOTTOM)
+							.setTex(0, PathTo("fan", "top"), Side.TOP)
+							.setTex(0, PathTo("fan", "side"), Side.NORTH, Side.SOUTH, Side.EAST, Side.WEST));
+		d.addDispatch(new BlockModelFan<>(ModBlocks.ACTIVE_FAN)
+							.setTex(0, PathTo("fan", "bottom"), Side.BOTTOM)
+							.setTex(0, PathTo("fan", "active_top"), Side.TOP)
+							.setTex(0, PathTo("fan", "active_side"), Side.NORTH, Side.WEST)
+							.setTex(0, PathTo("fan", "active_side_flipped"), Side.SOUTH, Side.EAST));
+		d.addDispatch(new BlockModelFan<>(ModBlocks.IN_FAN)
+							.setTex(0, PathTo("fan", "bottom"), Side.BOTTOM)
+							.setTex(0, PathTo("fan", "top"), Side.TOP)
+							.setTex(0, PathTo("fan", "side_suction"), Side.NORTH, Side.SOUTH, Side.EAST, Side.WEST));
+		d.addDispatch(new BlockModelFan<>(ModBlocks.ACTIVE_IN_FAN)
+							.setTex(0, PathTo("fan", "bottom"), Side.BOTTOM)
+							.setTex(0, PathTo("fan", "active_top"), Side.TOP)
+							.setTex(0, PathTo("fan", "active_side_suction"), Side.NORTH, Side.WEST)
+							.setTex(0, PathTo("fan", "active_side_flipped_suction"), Side.SOUTH, Side.EAST));
 		//SUPPORTS
 		d.addDispatch(new BlockModelSupports<>(ModBlocks.SUPPORT_STEEL).withTextures(PathTo("support","steel_top"),PathTo("support","steel")));
 		d.addDispatch(new BlockModelSupports<>(ModBlocks.SUPPORT_IRON).withTextures(PathTo("support","iron_top"),PathTo("support","iron")));

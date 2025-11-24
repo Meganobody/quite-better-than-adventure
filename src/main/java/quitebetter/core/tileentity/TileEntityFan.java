@@ -6,6 +6,8 @@ import net.minecraft.core.net.packet.PacketMovePlayer;
 import net.minecraft.server.entity.player.PlayerServer;
 import quitebetter.core.block.BlockLogicFan;
 import net.minecraft.core.block.Block;
+import net.minecraft.core.block.BlockLogic;
+import net.minecraft.core.block.BlockLogicMesh;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.entity.Entity;
@@ -29,7 +31,9 @@ public class TileEntityFan extends TileEntity {
 				int z1 = MathHelper.round(z + (double)(facing.getOffsetZ() * i));
 				int id = world.getBlockId(x1, y1, z1);
 				if (Blocks.solid[id]) {
-					return i - 1;
+					BlockLogic logic = Blocks.getBlock(id).getLogic();
+					if (logic == null || (logic instanceof BlockLogicMesh));
+						return i - 1;
 				}
 			}
 			return range;

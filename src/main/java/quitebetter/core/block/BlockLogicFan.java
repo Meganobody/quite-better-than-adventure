@@ -1,29 +1,28 @@
 package quitebetter.core.block;
 
-import net.minecraft.core.block.entity.TileEntity;
-import net.minecraft.core.entity.EntityItem;
-import net.minecraft.core.enums.EnumDropCause;
-import net.minecraft.core.item.ItemStack;
+import java.util.Arrays;
+import java.util.Random;
+
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import quitebetter.core.tileentity.TileEntityCrate;
-import quitebetter.core.tileentity.TileEntityFan;
-import net.minecraft.core.block.*;
+
+import net.minecraft.core.block.Block;
+import net.minecraft.core.block.BlockLogicVeryRotatable;
+import net.minecraft.core.block.Blocks;
+import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.entity.Entity;
 import net.minecraft.core.entity.Mob;
+import net.minecraft.core.enums.EnumDropCause;
+import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
+import quitebetter.core.tileentity.TileEntityFan;
 
 public class BlockLogicFan extends BlockLogicVeryRotatable {
-	public static final int MASK_DIRECTION = 0b00000111;
 	public static final int MASK_SIGNALOVERRIDE = 0b00001000;
 	public boolean isActive;
 	public boolean isInverted;
@@ -126,13 +125,7 @@ public class BlockLogicFan extends BlockLogicVeryRotatable {
 	}
 
 	public static Direction getDirection(int data) {
-		data = data & MASK_DIRECTION;
-		if (data==0) {
-			return Direction.UP;
-		} else if (data==1) {
-			return Direction.DOWN;
-		}
-		return Direction.getDirectionById(data);
+		return Direction.getDirectionById(data & MASK_DIRECTION);
 	}
 
 	public void onNeighborBlockChange(World world, int x, int y, int z, int blockId) {
@@ -167,30 +160,18 @@ public class BlockLogicFan extends BlockLogicVeryRotatable {
 	}
 
 	public void onBlockPlacedOnSide(World world, int x, int y, int z, @NotNull Side side, double xPlaced, double yPlaced) {
-		if (side.getDirection() == Direction.UP) {
-			world.setBlockMetadataWithNotify(x, y, z, 0);
-		} else if (side.getDirection() == Direction.DOWN) {
-			world.setBlockMetadataWithNotify(x, y, z, 1);
-		} else {
-			world.setBlockMetadataWithNotify(x, y, z, setDirection(0, side.getDirection()));
-		}
+		world.setBlockMetadataWithNotify(x, y, z, setDirection(0, side.getDirection()));
 		this.setActive(world, x, y, z, this.checkIfActive(world, x, y, z));
 	}
 
 	public void onBlockPlacedByMob(World world, int x, int y, int z, @NotNull Side side, Mob mob, double xPlaced, double yPlaced) {
 		Direction direction = mob.getPlacementDirection(side).getOpposite();
-		if (direction == Direction.UP) {
-			world.setBlockMetadataWithNotify(x, y, z, 0);
-		} else if (direction == Direction.DOWN) {
-			world.setBlockMetadataWithNotify(x, y, z, 1);
-		} else {
-			world.setBlockMetadataWithNotify(x, y, z, setDirection(0, direction));
-		}
+		world.setBlockMetadataWithNotify(x, y, z, setDirection(0, direction));
 		this.setActive(world, x, y, z, this.checkIfActive(world, x, y, z));
 	}
 
 	public static int setDirection(int meta, Direction direction) {
-		return meta & -8 | direction.getId() & 7;
+		return (meta & -8) | direction.getId();
 	}
 
 	public Block getModifierBlock(World world, double x, double y, double z) {
