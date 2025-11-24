@@ -10,7 +10,6 @@ import net.minecraft.core.entity.Mob;
 import net.minecraft.core.net.packet.PacketBlockUpdate;
 import net.minecraft.core.net.packet.PacketContainerSetSlot;
 import net.minecraft.core.net.packet.PacketTileEntityData;
-import net.minecraft.core.player.inventory.container.Container;
 import net.minecraft.core.util.helper.BlockParticleHelper;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.server.entity.player.PlayerServer;
@@ -33,7 +32,7 @@ import turniplabs.halplibe.helper.EnvironmentHelper;
 
 import java.util.*;
 
-public class TileEntityCrate extends TileEntityGlued { //implements Container
+public class TileEntityCrate extends TileEntityGlued {
 	public final static int maxSlots = 48;
 	public final static int maxCrates = 8;
 	public Integer maxItemCount; //Max item amount in single instance
@@ -482,32 +481,8 @@ public class TileEntityCrate extends TileEntityGlued { //implements Container
 	public boolean canTakeStack(ItemStack stack) {
 		return this.itemID == null || this.getFreeSpace()>0 && isStackPushable(stack) && stack != null && stack.itemID == this.itemID && stack.getMetadata() == this.itemMeta;
 	}
-	//public ItemStack takeStack(int amount)
-	//{
-	//	this.checkStorageHeights();
-	//	if (this.glued) {
-	//		return null;
-	//	}
-	//	for (int yi = this.upperHeight; yi >= this.lowerHeight; yi--) {
-	//		if (isCrateConnectable(yi) && worldObj.getTileEntity(x, yi, z) instanceof TileEntityCrate && (((TileEntityCrate) worldObj.getTileEntity(x, yi, z)).itemCount > 0)) {
-	//			TileEntityCrate tile = (TileEntityCrate) worldObj.getTileEntity(x, yi, z);
-	//			int maxStackSize = (new ItemStack(tile.itemID, 1, tile.itemMeta)).getMaxStackSize();
-	//			int amount = Math.min(tile.itemCount, maxStackSize);
-	//			tile.itemCount -= amount;
-	//			ItemStack stack = new ItemStack(tile.itemID, amount, tile.itemMeta);
-	//			emitParticles(stack);
-	//			sendTilePacket(x, yi, z);
-	//			emitSound(true);
-	//			takeOutOfBasket();
-	//			return stack;
-	//		}
-	//	}
-	//	sendPacketsForCrates();
-	//	emitSound(false);
-	//	return null;
-	//}
 
-	public ItemStack takeMaxStack() {
+	public ItemStack takeStack() {
 		this.checkStorageHeights();
 		if (this.glued) {
 			return null;
@@ -643,50 +618,4 @@ public class TileEntityCrate extends TileEntityGlued { //implements Container
 			}
 		}
 	}
-
-	//@Override
-	//public int getContainerSize() {
-	//	return getOverallFullness();
-	//}
-//
-	//@Override
-	//public @Nullable ItemStack getItem(int arg0) {
-	//	// TODO Auto-generated method stub
-	//	throw new UnsupportedOperationException("Unimplemented method 'getItem'");
-	//}
-//
-	//@Override
-	//public int getMaxStackSize() {
-	//	return getOverallMaxSpace();
-	//}
-//
-	//@Override
-	//public String getNameTranslationKey() {
-	//	// TODO Auto-generated method stub
-	//	throw new UnsupportedOperationException("Unimplemented method 'getNameTranslationKey'");
-	//}
-//
-	//@Override
-	//public @Nullable ItemStack removeItem(int arg0, int arg1) {
-	//	// TODO Auto-generated method stub
-	//	throw new UnsupportedOperationException("Unimplemented method 'removeItem'");
-	//}
-//
-	//@Override
-	//public void setItem(int arg0, @Nullable ItemStack arg1) {
-	//	// TODO Auto-generated method stub
-	//	throw new UnsupportedOperationException("Unimplemented method 'setItem'");
-	//}
-//
-	//@Override
-	//public void sortContainer() {
-	//	// TODO Auto-generated method stub
-	//	throw new UnsupportedOperationException("Unimplemented method 'sortContainer'");
-	//}
-//
-	//@Override
-	//public boolean stillValid(Player player) {
-	//	// TODO Auto-generated method stub
-	//	throw new UnsupportedOperationException("Unimplemented method 'stillValid'");
-	//}
 }

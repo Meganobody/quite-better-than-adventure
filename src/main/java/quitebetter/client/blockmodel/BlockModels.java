@@ -81,6 +81,8 @@ public class BlockModels {
 		//LANTERN
 		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_COAL).setAllTextures(0,PathTo("lantern_coal")));
 		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_REDSTONE).setAllTextures(0,PathTo("lantern_redstone")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_REDSTONE_IDLE).setAllTextures(0,PathTo("lantern_redstone_idle")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_REDSTONE_ENCASED).setAllTextures(0,PathTo("lantern_redstone_encased")));
 		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_MUSHROOM).setAllTextures(0,PathTo("lantern_mushroom")));
 		//SEASHELL
 		d.addDispatch(new BlockModelOverlaySeashell<>(ModBlocks.OVERLAY_SEASHELL));

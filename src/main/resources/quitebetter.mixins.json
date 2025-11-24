@@ -8,6 +8,7 @@
     "core.BlockLogicFenceMixin",
     "core.BlockLogicMixin",
     "core.BlockLogicMushroomMixin",
+    "core.BlockLogicWireRedstoneMixin",
     "core.ChunkDecoratorOverworldMixin",
     "core.CreativeItemsMixin",
     "core.EntityFallingBlockMixin",
@@ -38,7 +39,6 @@
     "core.packet.PacketAddParticleMixin"
   ],
   "client": [
-    "client.BlockModelRopeMixin",
     "client.EntityRenderDispatcherMixin",
     "client.MinecraftMixin",
     "client.PacketHandlerClientMixin",

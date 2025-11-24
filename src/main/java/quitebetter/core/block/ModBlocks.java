@@ -47,6 +47,10 @@ public class ModBlocks {
 	public static Block<?> LANTERN_COAL;
 	public static Block<?> LANTERN_REDSTONE;
 	public static Block<?> LANTERN_MUSHROOM;
+	public static Block<BlockLogicLantern> LANTERN_COAL;
+	public static Block<BlockLogicLantern> LANTERN_REDSTONE;
+	public static Block<BlockLogicLantern> LANTERN_REDSTONE_IDLE;
+	public static Block<BlockLogicLantern> LANTERN_MUSHROOM;
 	public static Block<?> OVERLAY_SEASHELL;
 
 	public static Block<?> BRICK_MUD;

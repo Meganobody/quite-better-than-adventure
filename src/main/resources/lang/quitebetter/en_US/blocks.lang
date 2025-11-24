@@ -28,14 +28,20 @@ tile.quitebetter.pedestal.desc=A good way to highlight your achievements.
 
 # COAL LANTERN
 tile.quitebetter.lantern.coal.name=Iron Lantern
+tile.quitebetter.lantern.coal.name=Lantern
 tile.quitebetter.lantern.coal.desc=Metal lamp with a torch inside.
 
 # REDSTONE LANTERN
 tile.quitebetter.lantern.redstone.name=Redstone Iron Lantern
 tile.quitebetter.lantern.redstone.desc=Metal lamp with a redstone torch inside.
+tile.quitebetter.lantern.redstone.name=Redstone Lantern
+tile.quitebetter.lantern.redstone.desc=Metal lamp with a redstone torch inside, that can transit redstone signal.
+tile.quitebetter.lantern.redstone.idle.name=Unlit Redstone Lantern
+tile.quitebetter.lantern.redstone.idle.desc=Metal lamp with an redstone torch inside, that can transmit redstone signal.
 
 # GLOWING MUSHROOM LANTERN
 tile.quitebetter.lantern.mushroom.name=Glowing Iron Lantern
+tile.quitebetter.lantern.mushroom.name=Glowing Lantern
 tile.quitebetter.lantern.mushroom.desc=Metal lamp with a glowing mushroom inside.
 
 
