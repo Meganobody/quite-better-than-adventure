@@ -16,7 +16,7 @@ import turniplabs.halplibe.util.RecipeEntrypoint;
 public class ModCore implements ModInitializer, GameStartEntrypoint, RecipeEntrypoint {
 	public static final String MOD_ID = "quitebetter";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	public static final String VERSION = "1.0.8re1";
+	public static final String VERSION = "1.0.6";
 	@Override
 	public void onInitialize() {
 		LOGGER.info("Initializing "+MOD_ID+" "+VERSION);
