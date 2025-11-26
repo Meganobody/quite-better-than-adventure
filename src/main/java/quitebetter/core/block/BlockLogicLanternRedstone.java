@@ -1,35 +1,24 @@
 package quitebetter.core.block;
 
-import net.minecraft.client.sound.SoundEvent;
-import net.minecraft.core.block.Block;
-import net.minecraft.core.block.BlockLogic;
-import net.minecraft.core.block.BlockLogicPumpkinRedstone;
-import net.minecraft.core.block.BlockLogicRepeater;
-import net.minecraft.core.block.BlockLogicTorchRedstone;
-import net.minecraft.core.block.BlockLogicWireRedstone;
-import net.minecraft.core.block.Blocks;
+import net.minecraft.core.block.*;
 import net.minecraft.core.block.entity.TileEntity;
-import net.minecraft.core.block.material.Material;
 import net.minecraft.core.entity.Entity;
-import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
 import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
-import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
 
 import java.util.Random;
 
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockLogicLanternRedstone extends BlockLogicLantern {
 	protected final boolean isActive;
-	
+
 	public BlockLogicLanternRedstone(Block<?> block, boolean isActive) {
 		super(block);
 		this.isActive = isActive;
@@ -43,23 +32,20 @@ public class BlockLogicLanternRedstone extends BlockLogicLantern {
 	@Override
 	protected void place(World world, int x, int y, int z, Direction direction) {
 		super.place(world, x, y, z, direction);
-		if (isActive)
+		Side side;
+		for(int i = 0; i < Side.sides.length; i++)
 		{
-			Side side;
-			for(int i = 0; i < Side.sides.length; i++)
-			{
-				side = Side.sides[i];
-				world.notifyBlocksOfNeighborChange(x + side.getOffsetX(), y + side.getOffsetY(), z + side.getOffsetY(), this.id());
-			}
+			side = Side.sides[i];
+			world.notifyBlocksOfNeighborChange(x + side.getOffsetX(), y + side.getOffsetY(), z + side.getOffsetZ(), this.id());
 		}
    	}
-
+	@Override
    public void onBlockRemoved(World world, int x, int y, int z, int data) {
     	Side side;
     	for(int i = 0; i < Side.sides.length; i++)
 		{
 			side = Side.sides[i];
-			world.notifyBlocksOfNeighborChange(x + side.getOffsetX(), y + side.getOffsetY(), z + side.getOffsetY(), this.id());
+			world.notifyBlocksOfNeighborChange(x + side.getOffsetX(), y + side.getOffsetY(), z + side.getOffsetZ(), this.id());
 		}
    }
 	@Override
@@ -71,7 +57,9 @@ public class BlockLogicLanternRedstone extends BlockLogicLantern {
 		return side != direction.getSide();
 	}
 	public boolean getSignal(WorldSource worldSource, int x, int y, int z, Side side) {
-		return this.isActive && shouldSideEmitSignal(worldSource, x, y, z, side);
+		Direction direction = getDirection(worldSource.getBlockMetadata(x, y, z));
+		side = side.getOpposite();
+		return this.isActive && (shouldSideEmitSignal(worldSource, x, y, z, side) || side == direction.getSide());
    	}
 	protected boolean getInputSignal(World world, int x, int y, int z) {
 	    Direction direction = getDirection(world.getBlockMetadata(x, y, z)).getOpposite();
@@ -93,8 +81,8 @@ public class BlockLogicLanternRedstone extends BlockLogicLantern {
 		world.scheduleBlockUpdate(x, y, z, this.id(), this.tickDelay());
    	}
    	public boolean getDirectSignal(World world, int x, int y, int z, Side side) {
-		Side groundSide = getDirection(world.getBlockMetadata(x, y, z)).getOpposite().getSide();
-   		return side == groundSide && this.getSignal(world, x, y, z, side);
+		Direction direction = getDirection(world.getBlockMetadata(x, y, z));
+   		return side.getOpposite() == direction.getSide() && this.getSignal(world, x, y, z, side);
    	}
 
    	public boolean isSignalSource() {
@@ -118,8 +106,8 @@ public class BlockLogicLanternRedstone extends BlockLogicLantern {
 	}
 	@Override
 	protected boolean canPutItem(World world, int x, int y, int z, @Nullable ItemStack itemStack) {
-		return itemStack == null 
-			|| itemStack.itemID == Items.INGOT_STEEL_CRUDE.id 
+		return itemStack == null
+			|| itemStack.itemID == Items.INGOT_STEEL_CRUDE.id
 			|| itemStack.itemID == Items.TOOL_CLOCK.id
 		;
 	}

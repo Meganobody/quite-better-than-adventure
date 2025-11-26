@@ -26,8 +26,7 @@ public class BlockLogicLanternRedstoneEncased extends BlockLogicLanternRedstone 
 	}
     @Override
     public boolean shouldSideEmitSignal(WorldSource worldSource, int x, int y, int z, Side side) {
-		Direction direction = getDirection(worldSource.getBlockMetadata(x, y, z));
-		return side == direction.getOpposite().getSide();
+		return false;
 	}
     @Override
     public void updateTick(World world, int x, int y, int z, Random rand) {
