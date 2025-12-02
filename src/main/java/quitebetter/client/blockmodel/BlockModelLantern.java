@@ -20,14 +20,14 @@ import quitebetter.core.block.BlockLogicLantern;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.opengl.GL11;
 
-public class BlockModelLantern<T extends BlockLogicLantern> extends BlockModelVeryRotatable {
+public class BlockModelLantern<T extends BlockLogic> extends BlockModelVeryRotatable<T> {
 	public BlockModelLantern(Block<T> block) {
 		super(block);
 	}
-	private final double VERTICAL_MIN = 0; 
+	private final double VERTICAL_MIN = 0;
 	private final double VERTICAL_MAX = 1;
 	private final double HORIZONTAL_AVG = 0.5;
-	private final double HORIZONTAL_AMP = 0.4; 
+	private final double HORIZONTAL_AMP = 0.4;
 	private void makeLanternModel(Tessellator tessellator, IconCoordinate texIndex, double xd, double yd, double zd, Direction direction)
 	{
 		double minX, maxX, minY, maxY, minZ, maxZ, minU, maxU, minV, maxV;
@@ -142,7 +142,7 @@ public class BlockModelLantern<T extends BlockLogicLantern> extends BlockModelVe
 			g = (float)(color >> 8 & 255) / 255.0F;
 			b = (float)(color & 255) / 255.0F;
 		}
-		
+
 		GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
 		IconCoordinate texIndex = this.getBlockTextureFromSideAndMetadata(Side.BOTTOM, metadata);
 		if (renderBlocks.overrideBlockTexture != null) {
@@ -167,7 +167,7 @@ public class BlockModelLantern<T extends BlockLogicLantern> extends BlockModelVe
     	   brightness = this.getBlockBrightness(renderBlocks.blockAccess, x, y, z);
     	} else {
     	   tessellator.setLightmapCoord(this.block.getLightmapCoord(renderBlocks.blockAccess, x, y, z));
-    	}	
+    	}
     	int color = ((BlockColor)BlockColorDispatcher.getInstance().getDispatch(this.block)).getWorldColor(renderBlocks.blockAccess, x, y, z);
     	float r = (color >> 16 & 255) / 255.0F;
     	float g = (color >> 8 & 255) / 255.0F;
@@ -175,7 +175,7 @@ public class BlockModelLantern<T extends BlockLogicLantern> extends BlockModelVe
     	tessellator.setColorOpaque_F(brightness * r, brightness * g, brightness * b);
     	double xd = (double)x;
     	double yd = (double)y;
-    	double zd = (double)z;	
+    	double zd = (double)z;
     	int metadata = renderBlocks.blockAccess.getBlockMetadata(x, y, z);
     	IconCoordinate texIndex = this.getBlockTextureFromSideAndMetadata(Side.BOTTOM, metadata);
     	if (renderBlocks.overrideBlockTexture != null) {
@@ -199,7 +199,7 @@ public class BlockModelLantern<T extends BlockLogicLantern> extends BlockModelVe
 	//	double xd = (double)x;
 	//	double yd = (double)y;
 	//	double zd = (double)z;
-	//	
+	//
 	//	int metadata = renderBlocks.blockAccess.getBlockMetadata(x, y, z);
 	//	IconCoordinate texIndex = this.getBlockTextureFromSideAndMetadata(Side.BOTTOM, metadata);
 	//	if (renderBlocks.overrideBlockTexture != null) {

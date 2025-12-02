@@ -17,14 +17,16 @@ tile.quitebetter.geode.desc=A rock that contains minerals inside.
 # FAN
 tile.quitebetter.fan.name=Fan
 tile.quitebetter.fan.desc=Blows away everything.
-tile.quitebetter.active.fan.name=Active Fan
+tile.quitebetter.active.fan.name=Fan
 tile.quitebetter.active.fan.desc=Blows away everything.
 
 # PEDESTAL
 tile.quitebetter.pedestal.name=Pedestal
 tile.quitebetter.pedestal.desc=A good way to highlight your achievements.
 
-
+# PIPE
+tile.quitebetter.pipe.name=Pipe
+tile.quitebetter.pipe.desc=Transports items...oh no...
 
 # COAL LANTERN
 tile.quitebetter.lantern.coal.name=Lantern
@@ -36,25 +38,39 @@ tile.quitebetter.lantern.empty.desc=Metal lamp with nothing inside.
 
 # REDSTONE LANTERN
 tile.quitebetter.lantern.redstone.name=Redstone Lantern
-tile.quitebetter.lantern.redstone.desc=Metal lamp with a redstone torch inside, that can transit redstone signal.
-tile.quitebetter.lantern.redstone.idle.name=Unlit Redstone Lantern
-tile.quitebetter.lantern.redstone.idle.desc=Metal lamp with an redstone torch inside, that can transmit redstone signal.
-
-#ENCASED REDSTONE LANTERN
-tile.quitebetter.lantern.redstone.encased.name=Encased Redstone Lantern
-tile.quitebetter.lantern.redstone.encased.desc=Metal lamp with a redstone torch inside, that can transmit redstone signal directly over the line.
-tile.quitebetter.lantern.redstone.encased.idle.name=Unlit Encased Redstone Lantern
-tile.quitebetter.lantern.redstone.encased.idle.desc=Metal lamp with a redstone torch inside, that can transmit redstone signal directly over the line.
+tile.quitebetter.lantern.redstone.desc=Metal lamp with a redstone torch inside, that transmits redstone signal.
+tile.quitebetter.lantern.redstone.idle.name=Redstone Lantern
+tile.quitebetter.lantern.redstone.idle.desc=Metal lamp with an redstone torch inside, that transmits redstone signal.
 
 # SWITCH LANTERN
-tile.quitebetter.lantern.switch.name=Latch Redstone Lantern
-tile.quitebetter.lantern.switch.desc=Metal lamp with a redstone mechanism inside, that works like a automated lever.
-tile.quitebetter.lantern.switch.idle.name=Unlit Latch Redstone Lantern
-tile.quitebetter.lantern.switch.idle.desc=Metal lamp with a redstone mechanism inside, that works like a automated lever.
-tile.quitebetter.lantern.switch.input.name=Powered Latch Redstone Lantern
-tile.quitebetter.lantern.switch.input.desc=Metal lamp with a redstone mechanism inside, that works like a automated lever.
-tile.quitebetter.lantern.switch.idle.input.name=Powered Unlit Latch Redstone Lantern
-tile.quitebetter.lantern.switch.idle.input.desc=Metal lamp with a redstone mechanism inside, that works like a automated lever.
+tile.quitebetter.lantern.latch.name=Latch Redstone Lantern
+tile.quitebetter.lantern.latch.desc=Metal lamp with a redstone mechanism inside, that saves and transmits redstone signal.
+tile.quitebetter.lantern.latch.idle.name=Latch Redstone Lantern
+tile.quitebetter.lantern.latch.idle.desc=Metal lamp with a redstone mechanism inside, that saves and transmits redstone signal.
+tile.quitebetter.lantern.latch.input.name=Latch Redstone Lantern
+tile.quitebetter.lantern.latch.input.desc=Metal lamp with a redstone mechanism inside, that saves and transmits redstone signal.
+tile.quitebetter.lantern.latch.idle.input.name=Latch Redstone Lantern
+tile.quitebetter.lantern.latch.idle.input.desc=Metal lamp with a redstone mechanism inside, that saves and transmits redstone signal.
+
+# PULSE LANTERN
+tile.quitebetter.lantern.pulse.name=Pulse Redstone Lantern
+tile.quitebetter.lantern.pulse.desc=Metal lamp with a redstone mechanism inside, that makes redstone pulse.
+tile.quitebetter.lantern.pulse.idle.name=Pulse Redstone Lantern
+tile.quitebetter.lantern.pulse.idle.desc=Metal lamp with a redstone mechanism inside, that makes redstone pulse.
+tile.quitebetter.lantern.pulse.input.name=Pulse Redstone Lantern
+tile.quitebetter.lantern.pulse.input.desc=Metal lamp with a redstone mechanism inside, that makes redstone pulse.
+tile.quitebetter.lantern.pulse.idle.output.name=Pulse Redstone Lantern
+tile.quitebetter.lantern.pulse.idle.output.desc=Metal lamp with a redstone mechanism inside, that makes redstone pulse.
+
+# CLOCK LANTERN
+tile.quitebetter.lantern.clock.name=Clock Redstone Lantern
+tile.quitebetter.lantern.clock.desc=Metal lamp with a redstone mechanism inside, that makes multiple redstone pulses.
+tile.quitebetter.lantern.clock.idle.name=Clock Redstone Lantern
+tile.quitebetter.lantern.clock.idle.desc=Metal lamp with a redstone mechanism inside, that makes multiple redstone pulses.
+tile.quitebetter.lantern.clock.input.name=Clock Redstone Lantern
+tile.quitebetter.lantern.clock.input.desc=Metal lamp with a redstone mechanism inside, that makes multiple redstone pulses.
+tile.quitebetter.lantern.clock.idle.output.name=Clock Redstone Lantern
+tile.quitebetter.lantern.clock.idle.output.desc=Metal lamp with a redstone mechanism inside, that makes multiple redstone pulses.
 
 # GLOWING MUSHROOM LANTERN
 tile.quitebetter.lantern.mushroom.name=Glowing Lantern

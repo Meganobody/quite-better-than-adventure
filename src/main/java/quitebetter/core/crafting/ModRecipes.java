@@ -223,16 +223,11 @@ public class ModRecipes {
 			.addInput('#', Items.INGOT_IRON)
 			.addInput('@', Blocks.TORCH_REDSTONE_ACTIVE)
 			.create("lantern_redstone_craft", new ItemStack(ModBlocks.LANTERN_REDSTONE,1));
-		//LANTERN REDSTONE ENCASED
-		RecipeBuilder.Shapeless(MOD_ID)
-			.addInput(ModBlocks.LANTERN_REDSTONE)
-			.addInput(Items.INGOT_STEEL_CRUDE)
-			.create("lantern_redstone_encased_craft", new ItemStack(ModBlocks.LANTERN_REDSTONE_ENCASED,1));
 		//LANTERN SWITCH
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(ModBlocks.LANTERN_REDSTONE)
 			.addInput(Items.TOOL_CLOCK)
-			.create("lantern_switch_craft", new ItemStack(ModBlocks.LANTERN_SWITCH,1));
+			.create("lantern_switch_craft", new ItemStack(ModBlocks.LANTERN_LATCH,1));
 		//LANTERN MUSHROOM
 		RecipeBuilder.Shaped(MOD_ID,
 				"@",

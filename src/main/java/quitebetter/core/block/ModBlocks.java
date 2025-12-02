@@ -44,17 +44,26 @@ public class ModBlocks {
 	public static Block<BlockLogicStairs> STAIRS_BRICK_OBSIDIAN;
 	public static Block<BlockLogicSlab> SLAB_BRICK_OBSIDIAN;
 
-	public static Block<BlockLogicLantern> LANTERN_COAL;
-	public static Block<BlockLogicLantern> LANTERN_EMPTY;
-	public static Block<BlockLogicLantern> LANTERN_REDSTONE;
-	public static Block<BlockLogicLantern> LANTERN_REDSTONE_IDLE;
-	public static Block<BlockLogicLantern> LANTERN_REDSTONE_ENCASED;
-	public static Block<BlockLogicLantern> LANTERN_REDSTONE_ENCASED_IDLE;
-	public static Block<BlockLogicLantern> LANTERN_SWITCH;
-	public static Block<BlockLogicLantern> LANTERN_SWITCH_IDLE;
-	public static Block<BlockLogicLantern> LANTERN_SWITCH_INPUT;
-	public static Block<BlockLogicLantern> LANTERN_SWITCH_IDLE_INPUT;
-	public static Block<BlockLogicLantern> LANTERN_MUSHROOM;
+	public static Block<?> LANTERN_COAL;
+	public static Block<?> LANTERN_EMPTY;
+	public static Block<?> LANTERN_REDSTONE;
+	public static Block<?> LANTERN_REDSTONE_IDLE;
+	public static Block<?> LANTERN_LATCH;
+	public static Block<?> LANTERN_LATCH_IDLE;
+	public static Block<?> LANTERN_LATCH_INPUT;
+	public static Block<?> LANTERN_LATCH_IDLE_INPUT;
+	public static Block<?> LANTERN_PULSE;
+	public static Block<?> LANTERN_PULSE_IDLE;
+	public static Block<?> LANTERN_PULSE_INPUT;
+	public static Block<?> LANTERN_PULSE_IDLE_INPUT;
+	public static Block<?> LANTERN_CLOCK;
+	public static Block<?> LANTERN_CLOCK_IDLE;
+	public static Block<?> LANTERN_CLOCK_INPUT;
+	public static Block<?> LANTERN_CLOCK_IDLE_INPUT;
+	public static Block<?> LANTERN_MUSHROOM;
+
+	public static Block<?> PIPE;
+
 	public static Block<?> OVERLAY_SEASHELL;
 
 	public static Block<?> BRICK_MUD;
@@ -81,76 +90,112 @@ public class ModBlocks {
 	}
 
 	public static void Setup() {
+		PIPE = new BlockBuilder(MOD_ID)
+			.setHardness(1F).setResistance(6f)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF, BlockTags.MINEABLE_BY_PICKAXE)
+			.build("pipe", id("PIPE"), b -> new BlockLogicPipe(b) {});
 		//LANTERN
 		LANTERN_COAL = new BlockBuilder(MOD_ID)
-			.setHardness(0.1F)
+			.setHardness(0.1F).setResistance(3.5f)
 			.setTicking(true)
 			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS)
 			.build("lantern_coal", id("LANTERN_COAL"), b -> new BlockLogicLanternCoal(b) {});
 		LANTERN_EMPTY = new BlockBuilder(MOD_ID)
-			.setHardness(0.1F)
+			.setHardness(0.1F).setResistance(3.5f)
 			.setTicking(true)
 			.setTags(BlockTags.CAN_HANG_OFF, BlockTags.BROKEN_BY_FLUIDS)
 			.build("lantern_empty", id("LANTERN_EMPTY"), b -> new BlockLogicLanternEmpty(b) {});
 		LANTERN_REDSTONE = new BlockBuilder(MOD_ID)
-			.setHardness(0.1F)
+			.setHardness(0.1F).setResistance(3.5f)
 			.setTicking(true)
 			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS)
 			.build("lantern_redstone", id("LANTERN_REDSTONE"), b -> new BlockLogicLanternRedstone(b, true) {});
 		LANTERN_REDSTONE_IDLE = new BlockBuilder(MOD_ID)
-			.setHardness(0.1F)
+			.setHardness(0.1F).setResistance(3.5f)
 			.setTicking(true)
 			.setTags(BlockTags.CAN_HANG_OFF, BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
 			.build("lantern_redstone_idle", id("LANTERN_REDSTONE_IDLE"), b -> new BlockLogicLanternRedstone(b, false) {});
-		LANTERN_REDSTONE_ENCASED = new BlockBuilder(MOD_ID)
-			.setHardness(0.1F)
+		LANTERN_LATCH = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F).setResistance(5)
 			.setTicking(true)
 			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS)
-			.build("lantern_redstone_encased", id("LANTERN_REDSTONE_ENCASED"), b -> new BlockLogicLanternRedstoneEncased(b, true) {});
-		LANTERN_REDSTONE_ENCASED_IDLE = new BlockBuilder(MOD_ID)
-			.setHardness(0.1F)
+			.build("lantern_latch", id("LANTERN_LATCH"), b -> new BlockLogicLanternLatch(b, true, false) {});
+		LANTERN_LATCH_IDLE = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F).setResistance(5)
 			.setTicking(true)
 			.setTags(BlockTags.CAN_HANG_OFF, BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
-			.build("lantern_redstone_encased_idle", id("LANTERN_REDSTONE_ENCASED_IDLE"), b -> new BlockLogicLanternRedstoneEncased(b, false) {});
-		LANTERN_SWITCH = new BlockBuilder(MOD_ID)
-			.setHardness(0.1F)
-			.setTicking(true)
-			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS)
-			.build("lantern_switch", id("LANTERN_SWITCH"), b -> new BlockLogicLanternSwitch(b, true, false) {});
-		LANTERN_SWITCH_IDLE = new BlockBuilder(MOD_ID)
-			.setHardness(0.1F)
-			.setTicking(true)
-			.setTags(BlockTags.CAN_HANG_OFF, BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
-			.build("lantern_switch_idle", id("LANTERN_SWITCH_IDLE"), b -> new BlockLogicLanternSwitch(b, false, false) {});
-		LANTERN_SWITCH_INPUT = new BlockBuilder(MOD_ID)
-			.setHardness(0.1F)
+				.build("lantern_latch_idle", id("LANTERN_LATCH_IDLE"), b -> new BlockLogicLanternLatch(b, false, false) {});
+		LANTERN_LATCH_INPUT = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F).setResistance(5)
 			.setTicking(true)
 			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
-			.build("lantern_switch_input", id("LANTERN_SWITCH_INPUT"), b -> new BlockLogicLanternSwitch(b, true, true) {});
-		LANTERN_SWITCH_IDLE_INPUT = new BlockBuilder(MOD_ID)
-			.setHardness(0.1F)
+			.build("lantern_latch_input", id("LANTERN_LATCH_INPUT"), b -> new BlockLogicLanternLatch(b, true, true) {});
+		LANTERN_LATCH_IDLE_INPUT = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F).setResistance(5)
 			.setTicking(true)
 			.setTags(BlockTags.CAN_HANG_OFF, BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
-			.build("lantern_switch_idle_input", id("LANTERN_SWITCH_IDLE_INPUT"), b -> new BlockLogicLanternSwitch(b, false, true) {});
+			.build("lantern_latch_idle_input", id("LANTERN_LATCH_IDLE_INPUT"), b -> new BlockLogicLanternLatch(b, false, true) {});
+		LANTERN_PULSE = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F).setResistance(3.5f)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+			.build("lantern_pulse", id("LANTERN_PULSE"), b -> new BlockLogicLanternPulse(b, true, false) {});
+		LANTERN_PULSE_IDLE = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F).setResistance(3.5f)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF, BlockTags.BROKEN_BY_FLUIDS)
+			.build("lantern_pulse_idle", id("LANTERN_PULSE_IDLE"), b -> new BlockLogicLanternPulse(b, false, false) {});
+		LANTERN_PULSE_INPUT = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F).setResistance(3.5f)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+			.build("lantern_pulse_input", id("LANTERN_PULSE_INPUT"), b -> new BlockLogicLanternPulse(b, true, true) {});
+		LANTERN_PULSE_IDLE_INPUT = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F).setResistance(3.5f)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF, BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+			.build("lantern_pulse_idle_input", id("LANTERN_PULSE_IDLE_INPUT"), b -> new BlockLogicLanternPulse(b, false, true) {});
+		LANTERN_CLOCK = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F).setResistance(5f)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+				.build("lantern_clock", id("LANTERN_CLOCK"), b -> new BlockLogicLanternClock(b, true, false) {});
+		LANTERN_CLOCK_IDLE = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F).setResistance(5f)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF, BlockTags.BROKEN_BY_FLUIDS)
+			.build("lantern_clock_idle", id("LANTERN_CLOCK_IDLE"), b -> new BlockLogicLanternClock(b, false, false) {});
+		LANTERN_CLOCK_INPUT = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F).setResistance(5f)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+			.build("lantern_clock_input", id("LANTERN_CLOCK_INPUT"), b -> new BlockLogicLanternClock(b, true, true) {});
+		LANTERN_CLOCK_IDLE_INPUT = new BlockBuilder(MOD_ID)
+			.setHardness(0.1F).setResistance(5f)
+			.setTicking(true)
+			.setTags(BlockTags.CAN_HANG_OFF, BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+			.build("lantern_clock_idle_input", id("LANTERN_CLOCK_IDLE_INPUT"), b -> new BlockLogicLanternClock(b, false, true) {});
 		LANTERN_MUSHROOM = new BlockBuilder(MOD_ID)
-			.setHardness(0.1F)
+			.setHardness(0.1F).setResistance(3.5f)
 			.setTicking(true)
 			.setTags(BlockTags.CAN_HANG_OFF,BlockTags.BROKEN_BY_FLUIDS)
-			.build("lantern_mushroom", id("LANTERN_MUSHROOM"), b -> new BlockLogicLanternMushroom(b) {});
-			
+			.build("lantern_mushroom", id("LANTERN_MUSHROOM"), b -> new BlockLogicLantern(b) {})
+			.withLightEmission(15);
+
 		//BONEBLOCK
 		BLOCK_BONE = new BlockBuilder(MOD_ID)
-			.setHardness(0.2F)
+			.setHardness(0.2F).setResistance(6f)
 			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
 			.setBlockSound(BlockSounds.METAL)
 			.build("block_bone", id("BLOCK_BONE"), b -> new BlockLogicBoneBlock(b, Material.marble) {});
 		//OBSIDIAN POLISHED
 		OBSIDIAN_POLISHED = new BlockBuilder(MOD_ID)
-			.setHardness(10.0F).setResistance(2000.0F)
+			.setHardness(10.0F).setResistance(1200.0F)
 			.setTags(BlockTags.MINEABLE_BY_PICKAXE,BlockTags.PISTON_CRUSHING)
 			.build("obsidian_polished", id("OBSIDIAN_POLISHED"), b -> new BlockLogic(b, Material.stone) {})
 			.withOverrideColor(MaterialColor.paintedBlack);
-		//SEASHELLTILES
+		//SEASHELL TILES
 		TILE_SEASHELL = new BlockBuilder(MOD_ID)
 			.setHardness(1.5F).setResistance(2.0F)
 			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
@@ -297,7 +342,7 @@ public class ModBlocks {
 			.setBlockSound(BlockSounds.STONE)
 			.setTags(BlockTags.MINEABLE_BY_PICKAXE,BlockTags.PISTON_CRUSHING)
 			.build("slab_brick_obsidian", id("SLAB_BRICK_OBSIDIAN"), b -> new BlockLogicSlab(b, BRICK_OBSIDIAN) {});
-		
+
 		//OVERLAY SEASHELL
 		OVERLAY_SEASHELL = new BlockBuilder(MOD_ID)
 			.setTags(BlockTags.BROKEN_BY_FLUIDS,BlockTags.NOT_IN_CREATIVE_MENU)

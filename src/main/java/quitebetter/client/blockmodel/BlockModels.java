@@ -79,17 +79,26 @@ public class BlockModels {
 		d.addDispatch(new BlockModelStairs<>(ModBlocks.STAIRS_BRICK_OBSIDIAN).setAllTextures(0,PathTo("brick_obsidian")));
 		d.addDispatch(new BlockModelSlab<>(ModBlocks.SLAB_BRICK_OBSIDIAN).setAllTextures(0,PathTo("brick_obsidian")));
 		//LANTERN
-		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_COAL).setAllTextures(0,PathTo("lantern_coal")));
-		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_EMPTY).setAllTextures(0,PathTo("lantern_empty")));
-		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_REDSTONE).setAllTextures(0,PathTo("lantern_redstone")));
-		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_REDSTONE_IDLE).setAllTextures(0,PathTo("lantern_redstone_idle")));
-		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_REDSTONE_ENCASED).setAllTextures(0,PathTo("lantern_redstone_encased")));
-		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_REDSTONE_ENCASED_IDLE).setAllTextures(0,PathTo("lantern_redstone_encased_idle")));
-		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_SWITCH).setAllTextures(0,PathTo("lantern_switch")));
-		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_SWITCH_IDLE).setAllTextures(0,PathTo("lantern_switch_idle")));
-		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_SWITCH_INPUT).setAllTextures(0,PathTo("lantern_switch_input")));
-		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_SWITCH_IDLE_INPUT).setAllTextures(0,PathTo("lantern_switch_idle_input")));
-		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_MUSHROOM).setAllTextures(0,PathTo("lantern_mushroom")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_COAL).setAllTextures(0,PathTo("lantern","coal")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_EMPTY).setAllTextures(0,PathTo("lantern","empty")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_REDSTONE).setAllTextures(0,PathTo("lantern","redstone")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_REDSTONE_IDLE).setAllTextures(0,PathTo("lantern","redstone_idle")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_LATCH).setAllTextures(0,PathTo("lantern","steel")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_LATCH_IDLE).setAllTextures(0,PathTo("lantern","steel_idle")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_LATCH_INPUT).setAllTextures(0,PathTo("lantern","steel_input")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_LATCH_IDLE_INPUT).setAllTextures(0,PathTo("lantern","steel_idle_input")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_PULSE).setAllTextures(0,PathTo("lantern","gold")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_PULSE_IDLE).setAllTextures(0,PathTo("lantern","gold_idle")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_PULSE_INPUT).setAllTextures(0,PathTo("lantern","gold_input")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_PULSE_IDLE_INPUT).setAllTextures(0,PathTo("lantern","gold_idle_input")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_CLOCK).setAllTextures(0,PathTo("lantern","diamond")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_CLOCK_IDLE).setAllTextures(0,PathTo("lantern","diamond_idle")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_CLOCK_INPUT).setAllTextures(0,PathTo("lantern","diamond_input")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_CLOCK_IDLE_INPUT).setAllTextures(0,PathTo("lantern","diamond_idle_input")));
+		d.addDispatch(new BlockModelLantern<>(ModBlocks.LANTERN_MUSHROOM).setAllTextures(0,PathTo("lantern","mushroom")));
+
+		d.addDispatch(new BlockModelFullyRotatable<>(ModBlocks.PIPE).setTex(0, PathTo("pipe", "section"), Side.BOTTOM, Side.TOP)
+			.setTex(0, PathTo("pipe", "side"), Side.NORTH, Side.SOUTH, Side.EAST, Side.WEST));
 		//SEASHELL
 		d.addDispatch(new BlockModelOverlaySeashell<>(ModBlocks.OVERLAY_SEASHELL));
 		//BRICKS MUD

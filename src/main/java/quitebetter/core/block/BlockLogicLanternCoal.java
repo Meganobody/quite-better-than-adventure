@@ -24,15 +24,4 @@ public class BlockLogicLanternCoal extends BlockLogicLantern {
 		world.spawnParticle("smoke", xPos, yPos, zPos, (double)0.0F, (double)0.0F, (double)0.0F, 0);
 		world.spawnParticle("flame", xPos, yPos, zPos, (double)0.0F, (double)0.0F, (double)0.0F, 0);
 	}
-	@Override
-	protected @Nullable ItemStack putItem(World world, int x, int y, int z, @Nullable ItemStack itemStack, @Nullable Entity entity)
-	{
-		world.playSoundEffect(entity, SoundCategory.WORLD_SOUNDS, x, y, z, "random.pop", 0.1f, 0.5f);
-		world.setBlockAndMetadataWithNotify(x, y, z, ModBlocks.LANTERN_EMPTY.id(), world.getBlockMetadata(x, y, z));
-		return new ItemStack(Blocks.TORCH_COAL);
-	}
-	@Override
-	protected boolean canPutItem(World world, int x, int y, int z, @Nullable ItemStack itemStack) {
-		return itemStack == null;
-	}
 }

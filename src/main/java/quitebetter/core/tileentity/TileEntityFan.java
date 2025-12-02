@@ -15,6 +15,7 @@ import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.World;
+import quitebetter.core.block.BlockLogicPipe;
 import turniplabs.halplibe.helper.EnvironmentHelper;
 
 import java.util.List;
@@ -30,10 +31,16 @@ public class TileEntityFan extends TileEntity {
 				int y1 = MathHelper.round(y + (double)(facing.getOffsetY() * i));
 				int z1 = MathHelper.round(z + (double)(facing.getOffsetZ() * i));
 				int id = world.getBlockId(x1, y1, z1);
+				int meta = world.getBlockMetadata(x1, y1, z1);
 				if (Blocks.solid[id]) {
 					BlockLogic logic = Blocks.getBlock(id).getLogic();
-					if (logic == null || (logic instanceof BlockLogicMesh));
-						return i - 1;
+					if (logic == null || logic instanceof BlockLogicMesh) continue;
+					if (logic instanceof BlockLogicPipe && Direction.getDirectionById(meta & 7).getAxis() == facing.getAxis())
+					{
+						range++;
+						continue;
+					}
+					return i - 1;
 				}
 			}
 			return range;
