@@ -210,6 +210,12 @@ public class ModRecipes {
 			.addInput('#', Items.INGOT_IRON)
 			.addInput('@', Blocks.TORCH_COAL)
 			.create("lantern_coal_craft", new ItemStack(ModBlocks.LANTERN_COAL,1));
+		//LANTERN EMPTY
+		RecipeBuilder.Shaped(MOD_ID,
+				"#",
+				"#")
+			.addInput('#', Items.INGOT_IRON)
+			.create("lantern_empty_craft", new ItemStack(ModBlocks.LANTERN_EMPTY,2));
 		//LANTERN REDSTONE
 		RecipeBuilder.Shaped(MOD_ID,
 				"@",
@@ -217,6 +223,11 @@ public class ModRecipes {
 			.addInput('#', Items.INGOT_IRON)
 			.addInput('@', Blocks.TORCH_REDSTONE_ACTIVE)
 			.create("lantern_redstone_craft", new ItemStack(ModBlocks.LANTERN_REDSTONE,1));
+		//LANTERN SWITCH
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(ModBlocks.LANTERN_REDSTONE)
+			.addInput(Items.TOOL_CLOCK)
+			.create("lantern_switch_craft", new ItemStack(ModBlocks.LANTERN_LATCH,1));
 		//LANTERN MUSHROOM
 		RecipeBuilder.Shaped(MOD_ID,
 				"@",
@@ -224,6 +235,15 @@ public class ModRecipes {
 			.addInput('#', Items.INGOT_IRON)
 			.addInput('@', ModBlocks.MUSHROOM_GLOWING)
 			.create("lantern_glowing_craft", new ItemStack(ModBlocks.LANTERN_MUSHROOM,1));
+		//HOOK
+		RecipeBuilder.Shaped(MOD_ID,
+				"CLC", "OGO", "ORO")
+			.addInput('G', Items.INGOT_GOLD)
+			.addInput('C', Items.CLOTH)
+			.addInput('R', Items.DUST_REDSTONE)
+			.addInput('O', Blocks.OBSIDIAN)
+			.addInput('L', "minecraft:logs")
+			.create("hook_craft", new ItemStack(ModBlocks.PISTON_BASE_FINE));
 		//WRENCH
 		RecipeBuilder.Shaped(MOD_ID,
 				"# #",

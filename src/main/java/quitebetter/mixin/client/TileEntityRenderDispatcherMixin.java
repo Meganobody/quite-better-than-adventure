@@ -1,6 +1,8 @@
 package quitebetter.mixin.client;
 
+import quitebetter.client.tileentityrender.TileEntityRendererMeshSteelCrude;
 import quitebetter.client.tileentityrender.TileEntityRendererPedestal;
+import quitebetter.core.tileentity.TileEntityMeshSteelCrude;
 import quitebetter.core.tileentity.TileEntityPedestal;
 import net.minecraft.client.render.TileEntityRenderDispatcher;
 import net.minecraft.client.render.tileentity.TileEntityRenderer;
@@ -29,6 +31,7 @@ public class TileEntityRenderDispatcherMixin {
 	)
 	private void init(CallbackInfo ci) {
 		renderers.put(TileEntityPedestal.class, new TileEntityRendererPedestal());
+		renderers.put(TileEntityMeshSteelCrude.class, new TileEntityRendererMeshSteelCrude());
 	}
 
 }

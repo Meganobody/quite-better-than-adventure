@@ -26,7 +26,7 @@ public class ItemMetaWrench extends Item {
 				int oldmeta = world.getBlockMetadata(blockX, blockY, blockZ);
 				int change = player.isSneaking() ? -1 : 1;
 				world.setBlockMetadataWithNotify(blockX, blockY, blockZ, oldmeta + change);
-				player.sendMessage(I18n.getInstance().translateKey("item.item.quitebetter.meta.wrench.info").replace("*", ""+oldmeta) + " "+world.getBlockMetadata(blockX,blockY,blockZ));
+				player.sendMessage(I18n.getInstance().translateKey("item.quitebetter.meta.wrench.info").replace("*", ""+oldmeta) + " "+world.getBlockMetadata(blockX,blockY,blockZ));
 				return true;
 			}
 		}
