@@ -42,7 +42,7 @@ public class BlockLogicLanternPulse extends BlockLogicLanternLatch {
 		if (!this.hasInput && hasInput)
 		{
 			isActive = true;
-			world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, x, y, z, "random.click", 0.2f, 2f);
+			//world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, x, y, z, "random.click", 0.2f, 2f);
 		}
 		else isActive = false;
 		world.setBlockAndMetadataWithNotify(x, y, z, GetBlock(isActive, hasInput).id(), world.getBlockMetadata(x, y, z));

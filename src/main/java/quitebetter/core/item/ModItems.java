@@ -20,6 +20,8 @@ public class ModItems {
 	public static Item SACK;
 	public static Item GLOVE_LEATHER;
 	public static Item GLOVE_STEEL;
+	public static Item DELAYER;
+	public static Item NUMBER;
 
 	public static int startingItemId = ModConfig.startingItemId;
 
@@ -38,6 +40,15 @@ public class ModItems {
 	}
 
 	public static void Setup() {
+		NUMBER = new ItemBuilder(MOD_ID)
+			.setMaxDamage(250)
+			.build(
+				new Item(
+					name("number"),
+					key("number"),
+					id("number")
+				)
+			);
 		//CLIMBING HOOK
 
 		CLIMBING_HOOK = new ItemBuilder(MOD_ID)
@@ -105,6 +116,16 @@ public class ModItems {
 					key("pedestal"),
 					id("PEDESTAL"),
 					ModBlocks.PEDESTAL
+				)
+			);
+		//DELAYER
+		DELAYER = new ItemBuilder(MOD_ID)
+			.build(
+				new ItemPlaceable(
+					name("delayer"),
+					key("delayer"),
+					id("DELAYER"),
+					ModBlocks.DELAYER_IDLE
 				)
 			);
 		//AMMO ARROW TORCH

@@ -5,6 +5,10 @@
   "compatibilityLevel": "JAVA_8",
   "plugin": "quitebetter.mixin.MixinConfig",
   "mixins": [
+    "core.BlockModelPistonHeadMixin",
+    "core.BlockLogicPistonHeadMixin",
+    "core.IEntityAccessor",
+    "core.EntityItemMixin",
     "core.BlockLogicFenceMixin",
     "core.BlockLogicMixin",
     "core.BlockLogicMushroomMixin",

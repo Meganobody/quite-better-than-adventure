@@ -44,7 +44,7 @@ public class BlockLogicLanternLatch extends BlockLogicLanternRedstone implements
 		if (!this.hasInput && hasInput)
 		{
 			isActive = !isActive;
-			world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, x, y, z, "random.click", 0.2f, 0.5f);
+			//world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, x, y, z, "random.click", 0.2f, 0.5f);
 		}
      	world.setBlockAndMetadataWithNotify(x, y, z, GetBlock(isActive, hasInput).id(), world.getBlockMetadata(x, y, z));
    	}
@@ -56,7 +56,7 @@ public class BlockLogicLanternLatch extends BlockLogicLanternRedstone implements
 
 	@Override
 	public void onBlockRightClicked(World world, int x, int y, int z, Player player, Side side) {
-		world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, x, y, z, "random.click", 0.2f, 1f);
+		//world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, x, y, z, "random.click", 0.2f, 1f);
 		world.setBlockAndMetadataWithNotify(x, y, z, GetBlock(!isActive, hasInput).id(), world.getBlockMetadata(x, y, z));
 	}
 }

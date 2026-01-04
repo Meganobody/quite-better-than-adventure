@@ -2,6 +2,12 @@ accessWidener v2 named
 accessible class net/minecraft/core/block/entity/TileEntityBasket$BasketEntry
 accessible field net/minecraft/core/block/entity/TileEntityBasket contents Ljava/util/Map;
 accessible field net/minecraft/core/block/entity/TileEntityBasket numUnitsInside I
+accessible method net/minecraft/core/block/entity/TileEntityBasket importItemStack (Lnet/minecraft/core/item/ItemStack;)Z
+accessible method net/minecraft/core/block/entity/TileEntityBasket updateNumUnits ()V
+accessible field net/minecraft/core/block/entity/TileEntityDispenser dispenserContents [Lnet/minecraft/core/item/ItemStack;
+accessible field net/minecraft/core/block/entity/TileEntityDispenser random Ljava/util/Random;
+extendable method net/minecraft/core/block/BlockLogicDispenser dispenseItem (Lnet/minecraft/core/world/World;IIILjava/util/Random;)V
+accessible method net/minecraft/core/block/BlockLogicRepeater isGettingPower (Lnet/minecraft/core/world/World;IIII)Z
 accessible field net/minecraft/core/world/data/SynchedEntityData itemsById Ljava/util/Map;
 accessible field net/minecraft/client/player/controller/PlayerController mc Lnet/minecraft/client/Minecraft;
 accessible field net/minecraft/client/render/tileentity/TileEntityRenderer renderDispatcher Lnet/minecraft/client/render/TileEntityRenderDispatcher;

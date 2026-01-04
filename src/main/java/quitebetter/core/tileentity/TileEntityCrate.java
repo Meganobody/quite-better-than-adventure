@@ -563,13 +563,11 @@ public class TileEntityCrate extends TileEntityGlued {
 						ItemStack stackcorr = tile.pushStack(stack);
 						if (stackcorr!=null) { //SUCCESS
 							if (stackcorr.stackSize>0) {
-								basket.numUnitsInside -= entry.getValue();
-								basket.numUnitsInside += stackcorr.stackSize;
 								entry.setValue(stackcorr.stackSize);
 							} else {
 								toRemove.add(basketEntry);
-								basket.numUnitsInside -= entry.getValue();
 							}
+							basket.updateNumUnits();
 							tile.updateStorageHeights();
 						}
 					}

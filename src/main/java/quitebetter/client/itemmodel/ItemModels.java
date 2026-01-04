@@ -14,7 +14,7 @@ import static quitebetter.core.ModCore.MOD_ID;
 
 public class ItemModels {
 	enum ModelTypes {
-		ITEM, TOOL, SACK
+		ITEM, TOOL, SACK, NUMBER
 	}
 	private static void Add(@NotNull Item item, String texture, @NotNull ItemModels.ModelTypes modeltype) {
 		Supplier func;
@@ -23,6 +23,9 @@ public class ItemModels {
 				func = () -> new ItemModelStandard(item, MOD_ID)
 					.setIcon(MOD_ID+":item/"+texture)
 					.setFull3D();
+				break;
+			case NUMBER:
+				func = () -> new ItemModelNumber(item, MOD_ID);
 				break;
 			case SACK:
 				func = () -> new ItemModelSack(item, MOD_ID)
@@ -37,12 +40,14 @@ public class ItemModels {
 		ModelHelper.setItemModel(item, func);
 	}
 	public static void Setup(ItemModelDispatcher d) {
+		Add(ModItems.NUMBER,"number", ModelTypes.NUMBER);
 		Add(ModItems.CLIMBING_HOOK,"climbing_hook", ModelTypes.TOOL);
 		Add(ModItems.WRENCH,"wrench", ModelTypes.TOOL);
 		Add(ModItems.META_WRENCH,"meta_wrench", ModelTypes.TOOL);
 		Add(ModItems.SEASHELL,"seashell", ModelTypes.ITEM);
 		d.addDispatch((new ItemModelSteelFishingRod(ModItems.TOOL_STEEL_FISHINGROD, MOD_ID)).setFull3D().setRotateWhenRendering());
 		Add(ModItems.PEDESTAL,"pedestal", ModelTypes.ITEM);
+		Add(ModItems.DELAYER,"delayer", ModelTypes.ITEM);
 		Add(ModItems.AMMO_ARROW_TORCH,"ammo_arrow_torch", ModelTypes.ITEM);
 		Add(ModItems.SACK,"sack", ModelTypes.SACK);
 	}

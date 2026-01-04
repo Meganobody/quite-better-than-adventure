@@ -58,6 +58,7 @@ public class BlockLogicPipe extends BlockLogicFullyRotatable {
 		//	return;
 		entity.moveTo(entity.x + entityDirection.getOffsetX(), entity.y + entityDirection.getOffsetY(), entity.z + entityDirection.getOffsetZ(), entity.yRot, entity.xRot);
 		world.sendGlobalMessage(String.format("block %s | entity %s", blockDirection.toString(), entityDirection.toString()));
+		world.sendGlobalMessage(String.format("vd %f %f %f", entity.xd, entity.yd, entity.zd));
 		//entity.push(entityDirection.getOffsetX(), entityDirection.getOffsetY(), entityDirection.getOffsetZ());
 	}
 }

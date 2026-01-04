@@ -34,7 +34,7 @@ public class BlockLogicLanternClock extends BlockLogicLanternPulse {
 		if (this.hasInput)
 		{
 			isActive = !isActive;
-			world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, x, y, z, "random.click", 0.2f, 1.5f + (isActive ? 0.5f : -0.2f));
+			//world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, x, y, z, "random.click", 0.2f, 1.5f + (isActive ? 0.5f : -0.2f));
 		}
 		else isActive = false;
 		world.setBlockAndMetadataWithNotify(x, y, z, GetBlock(isActive, hasInput).id(), world.getBlockMetadata(x, y, z));

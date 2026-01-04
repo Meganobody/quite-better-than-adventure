@@ -235,6 +235,15 @@ public class ModRecipes {
 			.addInput('#', Items.INGOT_IRON)
 			.addInput('@', ModBlocks.MUSHROOM_GLOWING)
 			.create("lantern_glowing_craft", new ItemStack(ModBlocks.LANTERN_MUSHROOM,1));
+		//HOOK
+		RecipeBuilder.Shaped(MOD_ID,
+				"CLC", "OGO", "ORO")
+			.addInput('G', Items.INGOT_GOLD)
+			.addInput('C', Items.CLOTH)
+			.addInput('R', Items.DUST_REDSTONE)
+			.addInput('O', Blocks.OBSIDIAN)
+			.addInput('L', "minecraft:logs")
+			.create("hook_craft", new ItemStack(ModBlocks.PISTON_BASE_FINE));
 		//WRENCH
 		RecipeBuilder.Shaped(MOD_ID,
 				"# #",
