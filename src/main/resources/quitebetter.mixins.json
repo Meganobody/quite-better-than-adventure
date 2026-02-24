@@ -1,10 +1,8 @@
 {
   "required": true,
+  "minVersion": "0.8",
   "package": "quitebetter.mixin",
-  "compatibilityLevel": "JAVA_${java}",
-  "injectors": {
-    "defaultRequire": 1
-  },
+  "compatibilityLevel": "JAVA_8",
   "plugin": "quitebetter.mixin.MixinConfig",
   "mixins": [
     "core.BlockLogicFenceMixin",
@@ -50,6 +48,9 @@
     "client.TileEntityRenderDispatcherMixin",
     "client.TileEntityRendererFlagMixin"
   ],
+  "injectors": {
+    "defaultRequire": 1
+  },
   "server": [
     "server.PacketHandlerServerMixin"
   ]

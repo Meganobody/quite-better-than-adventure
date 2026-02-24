@@ -1,27 +1,27 @@
 {
-	"schemaVersion": 1,
-	"id": "quitebetter",
-	"version": "${version}",
+  "schemaVersion": 1,
+  "id": "quitebetter",
+  "version": "${version}",
 
-	"name": "Quite Better than Adventure",
-	"description": "A mod that adds a bunch of stuff! Items, Blocks, other kinds of features!",
-	"authors": [
-		"Meganobody",
+  "name": "Quite Better than Adventure",
+  "description": "A mod that adds a bunch of stuff! Items, Blocks, other kinds of features!",
+  "authors": [
+			"Meganobody",
 		"(Doops, Tocinin)"
-	],
-	"contact": {
-		"homepage": "",
-		"sources": ""
-	},
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
 
 	"icon": "icon.png",
-	"license": "CC0-1.0",
+  "license": "CC0-1.0",
 
-	"environment": "*",
-	"entrypoints": {
-		"main": [
+  "environment": "*",
+  "entrypoints": {
+    "main": [
 			"quitebetter.core.ModCore"
-		],
+    ],
 		"beforeGameStart": [
 			"quitebetter.core.ModCore"
 		],
@@ -41,18 +41,15 @@
 			"quitebetter.client.impl.btwaila.BTWailaQBAPlugin"
 		]
 	},
-	"mixins": [
-		"quitebetter.mixins.json"
-	],
-	"accessWidener" : "quitebetter.classtweaker",
+  "mixins": [
+      "quitebetter.mixins.json"
+  ],
+	"accessWidener" : "quitebetter.accesswidener",
 
-	"depends": {
-		"fabricloader": ">=${fabricloader}",
-		"halplibe": ">=${halplibe}",
-		"minecraft": "*",
-		"java": ">=${java}"
-	},
-	"suggests": {
-		"modmenu": ">=${modmenu}"
-	}
+  "depends": {
+
+    "fabricloader": ">=0.13.3"
+  },
+  "suggests": {
+  }
 }
