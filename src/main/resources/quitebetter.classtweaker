@@ -1,4 +1,5 @@
-accessWidener v2 named
+classTweaker v1 official
+
 accessible class net/minecraft/core/block/entity/TileEntityBasket$BasketEntry
 accessible field net/minecraft/core/block/entity/TileEntityBasket contents Ljava/util/Map;
 accessible field net/minecraft/core/block/entity/TileEntityBasket numUnitsInside I
