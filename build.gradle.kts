@@ -1,4 +1,5 @@
 import com.smushytaco.lwjgl_gradle.Preset
+import com.smushytaco.offline_repo.ExportMavenRepoTask
 plugins {
     alias(libs.plugins.loom)
     alias(libs.plugins.lwjgl)
@@ -17,7 +18,9 @@ loom {
     customMinecraftMetadata.set("https://downloads.betterthanadventure.net/bta-client/${libs.versions.btaChannel.get()}/v${libs.versions.bta.get()}/manifest.json")
     accessWidenerPath = file("src/main/resources/quitebetter.classtweaker")
 }
+val localRepository = layout.projectDirectory.dir("offline-maven-repo").asFile
 repositories {
+    if (localRepository.exists()) maven(localRepository)
     mavenCentral()
     maven("https://jitpack.io")
     maven("https://maven.fabricmc.net/") { name = "Fabric" }
@@ -49,8 +52,17 @@ lwjgl {
     version = libs.versions.lwjgl
     implementation(Preset.MINIMAL_OPENGL)
 }
+val offlineVendor by configurations.creating {
+    isCanBeConsumed = false
+    isCanBeResolved = true
+}
 dependencies {
     minecraft("::${libs.versions.bta.get()}")
+
+    offlineVendor(libs.halplibe)
+    offlineVendor(libs.btwaila)
+    offlineVendor(libs.modnametooltip)
+    offlineVendor(libs.mixinSquared)
 
     runtimeOnly(libs.clientJar)
     implementation(libs.loader)
@@ -136,6 +148,57 @@ tasks {
         filesMatching("fabric.mod.json") { expand(resourceMap) }
         filesMatching("**/*.mixins.json") { expand(resourceMap.filterKeys { it == "java" }) }
     }
+}
+
+val exportOfflineRepo = tasks.register<ExportMavenRepoTask>("exportOfflineRepo") {
+    group = "distribution"
+    description = "Exports all resolved dependencies (including -sources jars when available) into a local Maven repo."
+    outputDir.set(localRepository)
+    val artifactView = offlineVendor.incoming.artifactView {}
+    val sourcesProvider = providers.provider {
+        val meta = mutableListOf<String>()
+        val extraSourceFiles = mutableListOf<File>()
+        artifactView.artifacts.forEach { ar ->
+            val file = ar.file
+            val compId = ar.id.componentIdentifier
+            if (compId is ModuleComponentIdentifier) {
+                val group = compId.group
+                val module = compId.module
+                val version = compId.version
+                val ext = file.extension.ifBlank { "jar" }
+                val filename = file.name
+                val base = filename.removeSuffix(".$ext")
+                val prefix = "$module-$version"
+                val classifier = when {
+                    base == prefix -> ""
+                    base.startsWith("$prefix-") -> base.substring(prefix.length + 1)
+                    else -> ""
+                }
+                meta += listOf(group, module, version, classifier, ext, filename).joinToString("|")
+                try {
+                    val sourcesNotation = "$group:$module:$version:sources@jar"
+                    val srcCfg = configurations.detachedConfiguration(dependencies.create(sourcesNotation))
+                    srcCfg.isCanBeResolved = true
+                    val resolvedSources = srcCfg.resolve()
+                    resolvedSources.forEach { sf ->
+                        val sExt = sf.extension.ifBlank { "jar" }
+                        val sFilename = sf.name
+                        val sClassifier = "sources"
+                        meta += listOf(group, module, version, sClassifier, sExt, sFilename).joinToString("|")
+                        extraSourceFiles += sf
+                    }
+                } catch (_: Exception) {
+                    logger.lifecycle("No -sources found for {}:{}:{}", group, module, version)
+                }
+            } else {
+                val filename = ar.file.name
+                meta += listOf("local", filename.removeSuffix(".jar"), "1.0", "", "jar", filename).joinToString("|")
+            }
+        }
+        Pair(meta.toList(), extraSourceFiles.toList())
+    }
+    artifactFiles.from(artifactView.files, providers.provider { sourcesProvider.get().second })
+    artifactMetadata.set(providers.provider { sourcesProvider.get().first })
 }
 // Removes LWJGL2 dependencies
 configurations.configureEach { exclude(group = "org.lwjgl.lwjgl") }
