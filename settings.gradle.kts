@@ -1,6 +1,7 @@
 val modName: Provider<String> = providers.gradleProperty("mod_name")
 rootProject.name = modName.get()
 pluginManagement {
+    val localRepository = file("offline-maven-repo")
     fun isRepoHealthy(url: String): Boolean {
         var connection: javax.net.ssl.HttpsURLConnection? = null
         return try {
@@ -36,6 +37,7 @@ pluginManagement {
         return chosenRepository
     }
     repositories {
+        if (localRepository.exists()) maven(localRepository)
         maven(
             repoUrlWithFallbacks(
                 listOf(
